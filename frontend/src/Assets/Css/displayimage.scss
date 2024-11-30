@@ -1,0 +1,14 @@
+.sothic__full-screen-image {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    img {
+        position: relative;
+        max-width: 80%;
+        z-index: 11;
+    }
+}

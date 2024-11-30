@@ -1,0 +1,81 @@
+.sothic__register {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 110px);
+  padding-bottom: 50px;
+}
+.sothic__register > .sothic__register-box {
+  width: 456px;
+  padding: 35px;
+  background-color: var(--color-black);
+  border: solid 2px var(--color-white);
+  border-radius: 5px;
+}
+.sothic__register > .sothic__register-box h1 {
+  font-size: 34px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.sothic__register > .sothic__register-box h2 {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 400;
+  margin-bottom: 35px;
+}
+.sothic__register > .sothic__register-box form {
+  gap: 25px;
+}
+.sothic__register > .sothic__register-box form p a {
+  color: rgb(45, 108, 255);
+}
+.sothic__register > .sothic__register-box form p a:hover {
+  color: rgb(0, 76, 255);
+}
+.sothic__register > .sothic__register-box button {
+  display: block;
+  width: 100%;
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 600;
+  padding: 12px 50px;
+  background-color: transparent;
+  border: solid 2px var(--color-white);
+  margin: 15px auto 0;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__register > .sothic__register-box button:hover {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+.sothic__input-box {
+  position: relative;
+}
+.sothic__input-box * {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.sothic__input-box label {
+  position: absolute;
+  color: #6E6E6E;
+  background-color: var(--color-black);
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+.sothic__input-box input {
+  position: relative;
+  color: var(--color-white);
+  padding: 10px 15px;
+  background-color: transparent;
+  border: solid 1px var(--color-white);
+  border-radius: 5px;
+  z-index: 2;
+}
+.sothic__input-box input:focus ~ label, .sothic__input-box input:valid ~ label {
+  top: 0;
+  z-index: 3;
+}/*# sourceMappingURL=register.css.map */

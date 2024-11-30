@@ -1,0 +1,82 @@
+.sothic__admin-change-role {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 150px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
+.sothic__admin-change-role * {
+  color: var(--color-black);
+}
+.sothic__popup-exit {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 11;
+}
+.sothic__popup-exit .material-symbols-outlined {
+  font-size: 32px;
+  color: var(--color-white);
+}
+.sothic__popup-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+.sothic__change-role-popup {
+  width: 456px;
+  position: relative;
+  padding: 40px 35px;
+  background-color: var(--color-white);
+  z-index: 11;
+}
+.sothic__change-role-popup h2 {
+  padding: 0;
+  margin-bottom: 25px;
+}
+.sothic__change-role-popup p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.sothic__change-role-popup button {
+  display: block;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color-white);
+  padding: 12px 25px;
+  background-color: rgb(255, 60, 60);
+  margin: 0 auto;
+}
+.sothic__change-role-popup button:hover {
+  background-color: rgb(255, 0, 0);
+}
+.sothic__change-role-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.sothic__change-role-select p {
+  margin-bottom: 0;
+}
+.sothic__change-role-select select {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 10px;
+  border: solid 1px var(--color-black);
+  -webkit-appearance: revert;
+     -moz-appearance: revert;
+          appearance: revert;
+}/*# sourceMappingURL=changeuserrole.css.map */

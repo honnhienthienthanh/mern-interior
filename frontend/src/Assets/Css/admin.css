@@ -1,0 +1,65 @@
+.sothic__admin {
+  display: grid;
+  grid-template-columns: 260px auto;
+  max-width: 100vw;
+  min-height: 100vh;
+}
+.sothic__admin-aside {
+  padding: 30px 45px 30px 30px;
+}
+.sothic__admin-aside-logo {
+  margin-bottom: 30px;
+}
+.sothic__admin-aside-logo h1 {
+  font-size: 28px;
+  line-height: 1;
+  padding: 10px 0;
+}
+.sothic__admin-aside-nav {
+  gap: 10px;
+}
+.sothic__admin-aside-nav a {
+  padding: 12px 16px;
+  gap: 16px;
+  border-radius: 24px;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-nav a:hover, .sothic__admin-aside-nav a.active {
+  background-color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-nav a:hover h3, .sothic__admin-aside-nav a:hover span, .sothic__admin-aside-nav a.active h3, .sothic__admin-aside-nav a.active span {
+  color: var(--color-black);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-nav span {
+  font-weight: 300;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-nav h3 {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-bottom {
+  padding: 10px 0;
+}
+.sothic__admin-aside-bottom button {
+  width: 100%;
+  padding: 12px 16px;
+  gap: 16px;
+  border-radius: 24px;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-bottom button:hover, .sothic__admin-aside-bottom button.active {
+  background-color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-aside-bottom button:hover h3, .sothic__admin-aside-bottom button:hover span, .sothic__admin-aside-bottom button.active h3, .sothic__admin-aside-bottom button.active span {
+  color: var(--color-black);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-main {
+  background-color: var(--color-white);
+}/*# sourceMappingURL=admin.css.map */

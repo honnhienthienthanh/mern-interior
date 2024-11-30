@@ -1,0 +1,63 @@
+.sothic__admin-all-users {
+  max-width: 1920px;
+  padding: 30px 0;
+  margin: 0 auto;
+}
+.sothic__admin-all-users h2 {
+  font-size: 28px;
+  line-height: 1;
+  color: var(--color-black);
+  padding: 16px 0 25px 16px;
+}
+.sothic__admin-all-users table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.sothic__admin-all-users table * {
+  color: var(--color-black);
+}
+.sothic__admin-all-users table thead tr {
+  background-color: var(--color-black);
+  border: solid rgb(206, 206, 206);
+  border-width: 1px 0 1px 0;
+}
+.sothic__admin-all-users table th {
+  color: var(--color-white);
+  padding: 15px 0 16px;
+  border-left: solid 1px rgb(206, 206, 206);
+}
+.sothic__admin-all-users table th:last-child {
+  border-right: solid 1px rgb(206, 206, 206);
+}
+.sothic__admin-all-users table tbody tr {
+  border-bottom: solid 1px rgb(206, 206, 206);
+}
+.sothic__admin-all-users table td {
+  text-align: center;
+  padding: 15px 0 16px;
+  border-left: solid 1px rgb(206, 206, 206);
+}
+.sothic__admin-all-users table td:last-child {
+  border-right: solid 1px rgb(206, 206, 206);
+}
+.sothic__admin-all-users table td div.flex {
+  gap: 5px;
+}
+.sothic__admin-all-users table td button {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-all-users table td button span {
+  font-size: 22px;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-all-users table td button:hover {
+  background-color: var(--color-black);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__admin-all-users table td button:hover span {
+  color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}/*# sourceMappingURL=allusers.css.map */

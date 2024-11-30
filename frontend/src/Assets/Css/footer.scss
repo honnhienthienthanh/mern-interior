@@ -1,0 +1,77 @@
+.sothic__footer {
+    width: 100vw;
+    height: 54px;
+    overflow: hidden;
+    font-size: 11px;
+    font-weight: 400;
+    padding: 0 30px;
+    background-color: rgba(13,13,13,.9);
+
+    * {
+        color: rgba(185,187,192,.9);
+    }
+
+    &-subscribe {
+        form {
+            gap: 8px;
+        }
+
+        input {
+            width: 171px;
+            height: 34px;
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 500;
+            color: #b9bbc0;
+            padding: 9px 15px;
+            background-color: var(--color-black);
+            border: solid 1px rgba(255,255,255,.15);
+        }
+
+        button {
+            height: 34px;
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 500;
+            padding: 10px 15px 11px;
+            background-color: var(--color-black);
+            border: solid 1px rgba(255,255,255,.15);
+
+            &:hover {
+                background-color: #1a1a1a;
+            }
+        }
+    }
+
+    &-affiliates {
+        gap: 10px;
+    }
+
+    &-social {
+        gap: 10px;
+        
+        a {
+            display: block;
+            width: 30px;
+            height: 30px;
+
+            &#footerTwetter {
+                background: url(../../Assets/Icons/icon-twetter.png) no-repeat center center;
+                background-size: cover;
+        
+                &:hover {
+                    background-image: url(../../Assets/Icons/icon-twetter-hover.png);
+                }
+            }
+    
+            &#footerInstagram {
+                background: url(../../Assets/Icons/icon-instagram.png) no-repeat center center;
+                background-size: cover;
+        
+                &:hover {
+                    background-image: url(../../Assets/Icons/icon-instagram-hover.png);
+                }
+            }
+        }
+    }
+}

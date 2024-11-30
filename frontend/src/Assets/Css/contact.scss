@@ -1,0 +1,262 @@
+.sothic__contact {
+    width: 100%;
+    min-height: calc((100vh - 110px));
+    background-color: #FBFBFB;
+    gap: 60px;
+    padding: 100px 30px 120px;
+
+    h2.text-center {
+        font-size: 45px;
+        line-height: 1;
+        margin-bottom: 24px;
+        color: var(--color-black);
+    }
+
+    p.text-center {
+        font-size: 21px;
+        line-height: 1;
+        color: #717171;
+    }
+
+    &-container {
+        width: 100%;
+        max-width: 1196px;
+        height: 667px;
+        padding: 10px;
+        background-color: var(--color-white);
+        border-radius: 10px;
+        gap: 50px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    &-info {
+        width: calc(41.75% - 25px);
+        height: 100%;
+        padding: 40px;
+        background-color: var(--color-black);
+        border-radius: 10px 10px 0 10px;
+
+        ul {
+            gap: 40px;
+
+            li {
+                gap: 25px;
+            }
+
+            span {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+
+    &-sub-title {
+        h3 {
+            font-size: 28px;
+            line-height: 1;
+            margin-bottom: 11px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 24px;
+            color: #C9C9C9;
+        }
+    }
+
+    &-social {
+        gap: 24px;
+
+        a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            background-position: top left;
+            background-size: contain;
+            transition: all 0.5s ease-in-out;
+
+            &#twetter {
+                background-image: url(../../Assets/Icons/icon-twetter.png);
+
+                &:hover {
+                    background-image: url(../../Assets/Icons/icon-twetter-hover.png);
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+
+            &#instagram {
+                background-image: url(../../Assets/Icons/icon-instagram.png);
+
+                &:hover {
+                    background-image: url(../../Assets/Icons/icon-instagram-hover.png);
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &-form {
+        width: calc(58.25% - 25px);
+        flex-wrap: wrap;
+        padding: 50px 40px 50px 0;
+        column-gap: 40px;
+        row-gap: 45px;
+    }
+
+    &-textbox {
+        width: 100%;
+        max-width: calc(50% - 20px);
+        flex-direction: column-reverse;
+
+        &.message {
+            max-width: 100%;
+        }
+
+        label {
+            font-size: 12px;
+            line-height: 12px;
+            font-weight: 600;
+            color: #8D8D8D;
+            margin-bottom: 8px;
+            transition: all 0.5s ease-in-out;
+        }
+
+        input {
+            width: 100%;
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 600;
+            color: var(--color-black);
+            padding-bottom: 10px;
+            border-bottom: solid 1.5px #8D8D8D;
+
+            &:focus {
+                border-color: var(--color-black);
+
+                & ~ label {
+                    color: var(--color-black);
+                    transition: all 0.5s ease-in-out;
+                }
+            }
+        }
+    }
+
+    &-subject {
+        * {
+            color: var(--color-black);
+        }
+
+        &-title {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .sothic__radio {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 13px;
+        }
+    }
+
+    &-radio-box {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    &-submit {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        padding: 14px 46px;
+        background-color: var(--color-black);
+        border-radius: 5px;
+        border: solid 1.5px var(--color-black);
+        margin-left: auto;
+        transition: all 0.5s ease-in-out;
+
+        &:hover {
+            color: var(--color-black);
+            background-color: var(--color-white);
+            transition: all 0.5s ease-in-out;
+        }
+    }
+}
+
+@media screen and (width < 991px) {
+    .sothic__contact {
+        padding: 50px 30px 70px;
+        gap: 40px;
+
+        &-title {
+            h2.text-center {
+                font-size: 41px;
+                margin-bottom: 15px;
+            }
+        }
+
+        &-container {
+            height: auto;
+            flex-direction: column;
+        }
+
+        &-info {
+            width: 100%;
+            gap: 50px;
+            border-radius: 10px;
+            
+            .flex {
+                gap: 20px;
+            }
+        }
+
+        &-form {
+            width: 100%;
+            padding: 0 40px 40px;
+        }
+    }
+}
+
+@media screen and (width < 768px) {
+    .sothic__contact {
+        gap: 25px;
+
+        &-title {
+            h2.text-center {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            p.text-center {
+                font-size: 16px;
+            }
+        }
+
+        &-info {
+            padding: 35px;
+            gap: 30px;
+
+            .flex {
+                column-gap: 25px;
+                row-gap: 10px;
+            }
+        }
+
+        &-textbox {
+            max-width: 100%;
+        }
+
+        &-submit {
+            margin: 0 auto;
+        }
+    }
+}
+
+@media screen and (width < 575px) {
+    .sothic__contact {
+        padding: 30px 10px 50px;
+    }
+}

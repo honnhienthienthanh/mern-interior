@@ -1,0 +1,63 @@
+.sothic__footer {
+  width: 100vw;
+  height: 54px;
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 400;
+  padding: 0 30px;
+  background-color: rgba(13, 13, 13, 0.9);
+}
+.sothic__footer * {
+  color: rgba(185, 187, 192, 0.9);
+}
+.sothic__footer-subscribe form {
+  gap: 8px;
+}
+.sothic__footer-subscribe input {
+  width: 171px;
+  height: 34px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  color: #b9bbc0;
+  padding: 9px 15px;
+  background-color: var(--color-black);
+  border: solid 1px rgba(255, 255, 255, 0.15);
+}
+.sothic__footer-subscribe button {
+  height: 34px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 500;
+  padding: 10px 15px 11px;
+  background-color: var(--color-black);
+  border: solid 1px rgba(255, 255, 255, 0.15);
+}
+.sothic__footer-subscribe button:hover {
+  background-color: #1a1a1a;
+}
+.sothic__footer-affiliates {
+  gap: 10px;
+}
+.sothic__footer-social {
+  gap: 10px;
+}
+.sothic__footer-social a {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+.sothic__footer-social a#footerTwetter {
+  background: url(../../Assets/Icons/icon-twetter.png) no-repeat center center;
+  background-size: cover;
+}
+.sothic__footer-social a#footerTwetter:hover {
+  background-image: url(../../Assets/Icons/icon-twetter-hover.png);
+}
+.sothic__footer-social a#footerInstagram {
+  background: url(../../Assets/Icons/icon-instagram.png) no-repeat center center;
+  background-size: cover;
+}
+.sothic__footer-social a#footerInstagram:hover {
+  background-image: url(../../Assets/Icons/icon-instagram-hover.png);
+}/*# sourceMappingURL=footer.css.map */

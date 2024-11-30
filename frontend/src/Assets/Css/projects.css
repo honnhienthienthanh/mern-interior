@@ -1,0 +1,14 @@
+.sothic__project {
+  padding: 30px;
+}
+.sothic__project .flex {
+  flex-wrap: wrap;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 25px;
+}
+@media screen and (width <= 768px) {
+  .sothic__project .flex {
+    justify-content: center;
+  }
+}/*# sourceMappingURL=projects.css.map */

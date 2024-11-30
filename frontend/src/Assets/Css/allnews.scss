@@ -1,0 +1,112 @@
+.sothic {
+    &__all-news {
+        * {
+            color: var(--color-black);
+        }
+
+        &-header {
+            padding: 50px 30px;
+        }
+
+        &-add {
+            padding: 8px 23px 9px 20px;
+            gap: 5px;
+            border: solid 1px rgb(161, 161, 161);
+            border-radius: 30px;
+
+            &:hover {
+                background-color: var(--color-black);
+                transition: all 0.3s ease-in-out;
+
+                * {
+                    color: var(--color-white);
+                    transition: all 0.3s ease-in-out;
+                }
+            }
+
+            span {
+                font-size: 21px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            h2 {
+                font-size: 16px;
+                line-height: 1;
+                font-weight: 500;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+
+        &-list {
+            table {
+                width: 100%;
+
+                thead {
+                    background-color: var(--color-black);
+
+                    th {
+                        font-size: 18px;
+                        color: var(--color-white);
+                        padding: 10px 0;
+
+                        @media screen and (width < 1280px) {
+                            max-width: 339px;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        &:first-child td {
+                            padding-top: 10px;
+                        }
+                    }
+
+                    td {
+                        text-align: center;
+                        padding: 5px 0;
+
+                        img {
+                            width: 150px;
+                            aspect-ratio: 1 / 0.5625;
+                        }
+
+                        div.flex {
+                            gap: 10px;
+                            padding: 0 15px;
+                        }
+
+                        button {
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 100%;
+                            transition: all 0.3s ease-in-out;
+            
+                            span {
+                                font-size: 22px;
+                                transition: all 0.3s ease-in-out;
+                            }
+            
+                            &:hover {
+                                background-color: var(--color-black);
+                                transition: all 0.3s ease-in-out;
+            
+                                span {
+                                    color: var(--color-white);
+                                    transition: all 0.3s ease-in-out;                    
+                                }
+                            }
+                        }
+
+                        @media screen and (width < 1280px) {
+                            p {
+                                max-width: 339px;
+                                margin: 0 auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

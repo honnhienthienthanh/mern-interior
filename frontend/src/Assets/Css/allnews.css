@@ -1,0 +1,85 @@
+.sothic__all-news * {
+  color: var(--color-black);
+}
+.sothic__all-news-header {
+  padding: 50px 30px;
+}
+.sothic__all-news-add {
+  padding: 8px 23px 9px 20px;
+  gap: 5px;
+  border: solid 1px rgb(161, 161, 161);
+  border-radius: 30px;
+}
+.sothic__all-news-add:hover {
+  background-color: var(--color-black);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-add:hover * {
+  color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-add span {
+  font-size: 21px;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-add h2 {
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-list table {
+  width: 100%;
+}
+.sothic__all-news-list table thead {
+  background-color: var(--color-black);
+}
+.sothic__all-news-list table thead th {
+  font-size: 18px;
+  color: var(--color-white);
+  padding: 10px 0;
+}
+@media screen and (width < 1280px) {
+  .sothic__all-news-list table thead th {
+    max-width: 339px;
+  }
+}
+.sothic__all-news-list table tbody tr:first-child td {
+  padding-top: 10px;
+}
+.sothic__all-news-list table tbody td {
+  text-align: center;
+  padding: 5px 0;
+}
+.sothic__all-news-list table tbody td img {
+  width: 150px;
+  aspect-ratio: 1/0.5625;
+}
+.sothic__all-news-list table tbody td div.flex {
+  gap: 10px;
+  padding: 0 15px;
+}
+.sothic__all-news-list table tbody td button {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-list table tbody td button span {
+  font-size: 22px;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-list table tbody td button:hover {
+  background-color: var(--color-black);
+  transition: all 0.3s ease-in-out;
+}
+.sothic__all-news-list table tbody td button:hover span {
+  color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+@media screen and (width < 1280px) {
+  .sothic__all-news-list table tbody td p {
+    max-width: 339px;
+    margin: 0 auto;
+  }
+}/*# sourceMappingURL=allnews.css.map */

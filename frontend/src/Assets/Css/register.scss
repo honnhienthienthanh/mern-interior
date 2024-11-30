@@ -1,0 +1,99 @@
+.sothic {
+    &__register {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: calc(100vh - 110px);
+        padding-bottom: 50px;
+
+        & > &-box {
+            width: 456px;
+            padding: 35px;
+            background-color: var(--color-black);
+            border: solid 2px var(--color-white);
+            border-radius: 5px;
+
+            h1 {
+                font-size: 34px;
+                line-height: 1;
+                margin-bottom: 10px;
+            }
+
+            h2 {
+                font-size: 18px;
+                line-height: 1;
+                font-weight: 400;
+                margin-bottom: 35px;
+            }
+
+            form {
+                gap: 25px;
+
+                p {
+                    a {
+                        color: rgb(45, 108, 255);
+
+                        &:hover {
+                            color: rgb(0, 76, 255);
+                        }
+                    }
+                }
+            }
+
+            button {
+                display: block;
+                width: 100%;
+                font-size: 18px;
+                line-height: 1;
+                font-weight: 600;
+                padding: 12px 50px;
+                background-color: transparent;
+                border: solid 2px var(--color-white);
+                margin: 15px auto 0;
+                transition: all 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: var(--color-white);
+                    color: var(--color-black);
+                }
+            }
+        }
+    }
+
+    &__input-box {
+        position: relative;
+
+        * {
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        label {
+            position: absolute;
+            color: #6E6E6E;
+            background-color: var(--color-black);
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            transition: all 0.3s ease-in-out;
+            z-index: 1;
+        }
+
+        input {
+            position: relative;
+            color: var(--color-white);
+            padding: 10px 15px;
+            background-color: transparent;
+            border: solid 1px var(--color-white);
+            border-radius: 5px;
+            z-index: 2;
+
+            &:focus ~ label,
+            &:valid ~ label {
+                top: 0;
+                z-index: 3;
+            }
+        }
+    }
+}
