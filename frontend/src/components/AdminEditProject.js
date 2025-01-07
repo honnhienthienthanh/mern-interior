@@ -4,6 +4,7 @@ import uploadImage from '../helpers/uploadImage'
 import DisplayImage from './DisplayImage'
 import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
+import { notification } from '../store/NotificationContext'
 
 const AdminEditProject = ({ prevData, onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
@@ -81,29 +82,30 @@ const AdminEditProject = ({ prevData, onClose, refresh }) => {
         const responseData = await fetchProject.json()
 
         if(responseData.success) {
-            console.log('Project Update', responseData)
+            notification.success('Sửa dự án thành công!')
             refresh()
             onClose()
         }
 
         if(responseData.error) {
-            console.log('Project Update', responseData)
+            notification.error('Đã có lỗi xảy ra. Vui lòng kiểm tra lại!')
+            onClose()
         }
     }
     return (
-        <div className='sothic__upload-project flex items-center justify-center'>
+        <div className='sothic__upload flex items-center justify-center'>
             <button className='sothic__popup-exit' onClick={onClose}>
                 <span className="material-symbols-outlined">
                     close
                 </span>
             </button>
             <div className='sothic__popup-bg' onClick={onClose}></div>
-            <div className='sothic__upload-project-form flex flex-col'>
+            <div className='sothic__upload-project-form sothic__upload-form flex flex-col'>
                 <h2>Sửa dự án</h2>
                 <form className='flex flex-col' onSubmit={handleSubmit}>
-                    <label htmlFor='sothic__edit-projectName'>Tên dự án:</label>
+                    <label htmlFor='sothic__projectName'>Tên dự án:</label>
                     <input
-                        id='sothic__edit-projectName'
+                        id='sothic__projectName'
                         name='projectName'
                         type='text'
                         placeholder='Nhập tên dự án'
@@ -113,9 +115,9 @@ const AdminEditProject = ({ prevData, onClose, refresh }) => {
                         required
                     />
                     
-                    <label htmlFor='sothic__edit-category'>Loại hình thiết kế:</label>
+                    <label htmlFor='sothic__category'>Loại hình thiết kế:</label>
                     <select
-                        id='sothic__edit-category'
+                        id='sothic__category'
                         name='category'
                         value={projectData.category}
                         onChange={handleOnChange}
@@ -224,7 +226,7 @@ const AdminEditProject = ({ prevData, onClose, refresh }) => {
                             <p>* Vui lòng tải lên ảnh của dự án</p>
                         )}
                     </div>
-                    <button className='sothic__upload-project-submit'>Sửa dự án</button>
+                    <button className='sothic__upload-submit'>Sửa dự án</button>
                 </form>
             </div>
             { showImage &&

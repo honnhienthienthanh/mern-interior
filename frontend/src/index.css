@@ -21,6 +21,9 @@
     --xs: 575px;
     --color-black: #000000;
     --color-white: #FFFFFF;
+    --color-orange: #ff5d2c;
+    --color-orange-hover: #ff3c00;
+    --transition-all: all 0.3s ease-in-out;
 }
 
 html {
@@ -178,6 +181,161 @@ button { cursor: pointer; }
     background-color: var(--color-white);
 }
 
+/* Popup */
+.sothic__popup {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(0);
+    z-index: 99;
+}
+
+.sothic__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.sothic__exit {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.sothic__exit::before,
+.sothic__exit::after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 21px;
+    height: 2px;
+    background-color: var(--color-black);
+    top: 11px;
+    left: 2px;
+}
+
+.sothic__exit::before {
+    transform: rotate(45deg);
+}
+
+.sothic__exit::after {
+    transform: rotate(-45deg);
+}
+
+.sothic__popup .sothic__exit {
+    margin: 0;
+}
+
+.sothic__popup .sothic__exit::before,
+.sothic__popup .sothic__exit::after {
+    background-color: var(--color-black);
+}
+
+.sothic__popup .sothic__form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 567px;
+    max-height: 80%;
+    padding: 50px;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    z-index: 3;
+}
+
+.sothic__popup .sothic__form * {
+    color: var(--color-black);
+}
+
+.sothic__popup .sothic__form  .sothic__form-title {
+    margin-bottom: 20px;
+}
+
+.sothic__popup .sothic__form h2 {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.sothic__popup .sothic__form input,
+.sothic__popup .sothic__form select,
+.sothic__popup .sothic__form textarea {
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 8px 16px;
+    color: var(--color-black);
+    background-color: #eef2f8;
+    border: solid 1px #e0e4eb;
+    border-radius: 3px;
+    margin-bottom: 6px;
+}
+
+.sothic__popup .sothic__form textarea {
+    height: 125px;
+    resize: none;
+    padding: 16px;
+}
+
+.sothic__popup .sothic__form button[type='submit'] {
+    width: 100%;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 8px 16px;
+    color: var(--color-white);
+    background-color: #ff5f09;
+}
+
+.sothic__popup .sothic__form button[type='submit']:hover {
+    background-color: #ef5400;
+}
+
+/*============ Effect ============*/
+.showZoom {
+    opacity: 1;
+    transform: scale(1);
+    animation: zoomOut 0.8s forwards;
+}
+
+@keyframes zoomOut {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hideZoom {
+    animation: zoomIn 0.8s forwards;
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+
 /* Break points */
 @media (width > 1200px) {
     /* xl */
@@ -230,4 +388,66 @@ button { cursor: pointer; }
     .xs\:flex {
         display: flex;
     }
+}
+
+
+.notification-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+}
+  
+.notification {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateX(100%); /* Bắt đầu từ ngoài màn hình */
+}
+
+/* Hiệu ứng slideIn */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%); /* Bắt đầu từ ngoài màn hình bên phải */
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0); /* Về vị trí ban đầu */
+    }
+}
+
+/* Hiệu ứng slideOut */
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0); /* Vị trí ban đầu */
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%); /* Di chuyển ra ngoài bên phải */
+    }
+}
+  
+.notification.success {
+    background-color: #4caf50;
+}
+  
+.notification.error {
+    background-color: #f44336;
+}
+  
+.notification.info {
+    background-color: #2196f3;
+}
+  
+.notification.warning {
+    background-color: #ff9800;
 }

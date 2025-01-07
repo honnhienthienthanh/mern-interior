@@ -64,7 +64,7 @@ const AllNews = () => {
                                 <tr key={news?.newsTitle + index}>
                                     <td>
                                         <img
-                                            src={'http://localhost:8080/' + news?.newsImage}
+                                            src={'http://localhost:8080/uploads/' + news?.newsImage}
                                             alt={`Sothic Studio - ${news?.newsTitle}`}
                                         />
                                     </td>
@@ -112,8 +112,8 @@ const AllNews = () => {
             { showEditNews &&
                 <AdminEditNews
                     prevData={editNews}
-                    onClose={() => setShowEditNews(false)}
                     refresh={getAllNews}
+                    onClose={() => setShowEditNews(false)}
                 />
             }
         </div>

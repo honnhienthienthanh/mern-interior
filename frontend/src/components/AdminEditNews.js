@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
+import { notification } from '../store/NotificationContext'
 
 const AdminEditNews = ({ prevData, onClose, refresh }) => {
     const [newsData, setNewsData] = useState({
@@ -30,17 +31,29 @@ const AdminEditNews = ({ prevData, onClose, refresh }) => {
         news.set('newsTitle', newsData.newsTitle)
         news.set('newsSumary', newsData.newsSumary)
         news.set('newsContent', newsData.newsContent)
-        news.set('newsImage', newsData.newsImage[0])
+
+        if(typeof newsData.newsImage === 'object') {
+            news.set('newsImage', newsData.newsImage[0])
+        } else {
+            news.set('newsImage', newsData.newsImage)
+        }
+        
         news.set('newsLink', createUrl(newsData.newsTitle))
 
         const postNews = await fetch(SothicAPI.news_update.url, {
             method: SothicAPI.news_update.method,
             credentials: 'include',
             body: news
-        })
+        }).then(res => res.json())
 
-        if(postNews.ok) {
+        if(postNews.success) {
+            notification.success('Sửa tin tức thành công!')
             refresh()
+            onClose()
+        }
+
+        if(postNews.error) {
+            notification.error('Sửa tin tức không thành công. Vui lòng kiểm tra lại!')
             onClose()
         }
     }
@@ -53,7 +66,7 @@ const AdminEditNews = ({ prevData, onClose, refresh }) => {
             </button>
             <div className='sothic__popup-bg' onClick={onClose}></div>
             <div className='sothic__upload-news sothic__upload-form flex flex-col'>
-                <h2>Thêm tin tức mới</h2>
+                <h2>Sửa tin tức</h2>
                 <form className='flex flex-col' onSubmit={uploadNews}>
                     <label htmlFor='newsTitle'>Tiêu đề:</label>
                     <input
@@ -91,7 +104,6 @@ const AdminEditNews = ({ prevData, onClose, refresh }) => {
                             }
                         })}
                         className='bottom-10'
-                        required
                     />
                     
                     <label htmlFor='newsContent'>Nội dung:</label>
@@ -104,7 +116,7 @@ const AdminEditNews = ({ prevData, onClose, refresh }) => {
                         className='bottom-10'
                         required
                     ></textarea>
-                    <button className='sothic__upload-submit'>Thêm dự án</button>
+                    <button className='sothic__upload-submit'>Sửa tin tức</button>
                 </form>
             </div>
         </div>

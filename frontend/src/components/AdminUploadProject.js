@@ -5,6 +5,7 @@ import uploadImage from '../helpers/uploadImage'
 import DisplayImage from './DisplayImage'
 import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
+import { notification } from '../store/NotificationContext'
 
 const UploadProject = ({ onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
@@ -86,13 +87,13 @@ const UploadProject = ({ onClose, refresh }) => {
         const responseData = await fetchProject.json()
 
         if(responseData.success) {
-            console.log('Project Upload', responseData)
+            notification.success('Thêm mới dự án thành công!')
             refresh()
             onClose()
         }
 
         if(responseData.error) {
-            console.log('Project Upload', responseData)
+            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
         }
     }
     return (

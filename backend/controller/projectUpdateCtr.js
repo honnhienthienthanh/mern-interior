@@ -1,9 +1,9 @@
-const projectUploadPermission = require('../helpers/permission')
+const userPermission = require('../helpers/permission')
 const projectModel = require('../models/projectModel')
 
 async function projectUpdateCtr(req, res) {
     try {
-        if(!projectUploadPermission(req.userId)) {
+        if(!userPermission(req.userId)) {
             throw new Error('Permission denied!')
         }
 

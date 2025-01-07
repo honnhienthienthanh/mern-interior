@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import '../Assets/Css/newsdetails.css'
 import SothicAPI from '../common/SothicApi'
 import moment from 'moment'
@@ -7,6 +7,7 @@ import moment from 'moment'
 const NewsDetails = () => {
     const [newsDetails, setNewsDetails] = useState()
     const { title } = useParams()
+    const navigate = useNavigate()
 
     async function getNews() {
         const newsDetails = await fetch(SothicAPI.news_details.url, {
@@ -25,7 +26,7 @@ const NewsDetails = () => {
 
         if(responseData.error) {
             console.log(responseData)
-            return <Navigate to={'/oops'} />
+            navigate('/oops')
         }
     }
 
@@ -38,7 +39,7 @@ const NewsDetails = () => {
             { newsDetails && (
                 <div className='sothic__news-details-container flex flex-col'>
                     <img
-                        src={'http://localhost:8080/' + newsDetails?.newsImage}
+                        src={'http://localhost:8080/uploads/' + newsDetails?.newsImage}
                         alt={'Sothic Studio - ' + newsDetails?.newsTitle}
                     />
                     <h2>{ newsDetails?.newsTitle }</h2>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../Assets/Css/changeuserrole.css'
 import ROLE from '../common/Role'
 import SothicAPI from '../common/SothicApi'
+import { notification } from '../store/NotificationContext'
 
 const ChangeUserRole = ({ userId, name, email, role, refresh, onClose }) => {
     const [userRole, setUserRole] = useState(role)
@@ -26,14 +27,13 @@ const ChangeUserRole = ({ userId, name, email, role, refresh, onClose }) => {
         const responseData = await fetchUpdate.json()
 
         if(responseData.success) {
-            console.log('Update user role: ', responseData.message)
-            console.log('Update user role: ', responseData)
+            notification.success('Đã thay đổi phân quyền thành công!')
             refresh()
             onClose()
         }
 
         if(responseData.error) {
-            console.log('Update user role: ', responseData.message)
+            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
         }
     }
     return (

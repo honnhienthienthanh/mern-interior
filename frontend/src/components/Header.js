@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
 import '../Assets/Css/header.css'
-import { Link } from 'react-router-dom'
-// import { useSelector } from 'react-redux'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
-    const [menuActive, setMenuActive] = useState(0)
-
-    // const user = useSelector(state => state?.user?.user)
-
-    function setMenuClass(index) {
-        return menuActive === index ? 'uppercase nav-active' : 'uppercase'
-    }
 
     return (
         <header>
@@ -20,7 +12,6 @@ const Header = () => {
                     to={'/'}
                     tittle='Sothic Studio'
                     className='sothic__header-logo flex items-center justify-center'
-                    onClick={() => setMenuActive(0)}
                 >
                     <span className='text-center uppercase'>Sothic</span>
                 </Link>
@@ -28,54 +19,48 @@ const Header = () => {
                     className='sothic__header-navigation flex items-center
                     justify-center uppercase md:hidden'
                 >
-                    <Link
+                    <NavLink
                         to={'/projects'}
                         title='Sothic Studio - Projects'
-                        onClick={() => setMenuActive(1)}
-                        className={setMenuClass(1)}
+                        className='uppercase'
                     >
                         DỰ ÁN
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/about'}
                         title='About Sothic Studio'
-                        onClick={() => setMenuActive(2)}
-                        className={setMenuClass(2)}
+                        className='uppercase'
                     >
                         GIỚI THIỆU
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/news'}
                         title='Sothic Studio - News'
-                        onClick={() => setMenuActive(4)}
-                        className={setMenuClass(4)}
+                        className='uppercase'
                     >
                         TIN TỨC
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/careers'}
                         title='Sothic Studio - Careers'
-                        onClick={() => setMenuActive(5)}
-                        className={setMenuClass(5)}
+                        className='uppercase'
                     >
                         TUYỂN DỤNG
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/contact'}
                         title='Contact to Sothic Studio'
-                        onClick={() => setMenuActive(6)}
-                        className={setMenuClass(6)}
+                        className='uppercase'
                     >
                         LIÊN HỆ
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/media'}
                         title='Sothic Studio - Media'
-                        onClick={() => setMenuActive(3)}
-                        className={setMenuClass(3)}
+                        className='uppercase'
                     >
                         MEDIA
-                    </Link>
+                    </NavLink>
                 </nav>
                 <div className='sothic__header-search flex items-center justify-center xs:hidden'>
                     <input

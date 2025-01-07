@@ -22,8 +22,6 @@ async function userLoginCtr(req, res) {
 
         const checkPassword = await bcrypt.compare(password, user.password)
 
-        console.log('User Login - Check password: ', checkPassword)
-
         if(checkPassword) {
             const tokenData = {
                 _id: user._id,

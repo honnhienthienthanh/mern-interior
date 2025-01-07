@@ -10,14 +10,18 @@ import Careers from '../pages/Careers'
 import Contact from '../pages/Contact'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
+import HomeSlider from '../pages/Admin/HomeSlider'
+import NewsDetails from '../pages/NewsDetails'
+import Oops from '../pages/Oops'
 import Admin from '../pages/Admin/Admin'
 import Dashboard from '../pages/Admin/Dashboard'
 import AllUsers from '../pages/Admin/AllUsers'
 import AllProjects from '../pages/Admin/AllProjects'
 import AllNews from '../pages/Admin/AllNews'
-import Oops from '../pages/Oops'
-import HomeSlider from '../pages/Admin/HomeSlider'
-import NewsDetails from '../pages/NewsDetails'
+import AllCareers from '../pages/Admin/AllCareers'
+import CareersDetails from '../pages/CareersDetails'
+import AllContact from '../pages/Admin/AllContact'
+import AllDesignREQ from '../pages/Admin/AllDesignREQ'
 
 const router = createBrowserRouter([
     {
@@ -50,12 +54,16 @@ const router = createBrowserRouter([
                 element: <News />
             },
             {
-                path: 'news-details/:title',
+                path: 'news/:title',
                 element: <NewsDetails />
             },
             {
                 path: 'careers',
                 element: <Careers />
+            },
+            {
+                path: 'careers/:title',
+                element: <CareersDetails />
             },
             {
                 path: 'contact',
@@ -88,12 +96,24 @@ const router = createBrowserRouter([
                 element: <AllUsers />
             },
             {
+                path: 'all-design-req',
+                element: <AllDesignREQ />
+            },
+            {
                 path: 'all-projects',
                 element: <AllProjects />
             },
             {
                 path: 'all-news',
                 element: <AllNews />
+            },
+            {
+                path: 'all-careers',
+                element: <AllCareers />
+            },
+            {
+                path: 'all-contact',
+                element: <AllContact />
             }
         ]
     },

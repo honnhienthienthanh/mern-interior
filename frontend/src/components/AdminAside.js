@@ -1,15 +1,8 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import SothicAPI from '../common/SothicApi'
-import { setUserDetails } from '../store/userSlice'
 
-const AdminAside = ({isAdmin, dispatch, navigate }) => {
-    const [navActive, setNavActive] = useState(0)
-
-    const setNavClass = (index) => {
-        return navActive === index ? 'flex items-center active' : 'flex items-center'
-    }
-
+const AdminAside = ({isAdmin, navigate }) => {
     const handleLogout = async(e) => {
         e.preventDefault()
 
@@ -22,7 +15,6 @@ const AdminAside = ({isAdmin, dispatch, navigate }) => {
 
         if(responseData.success) {
             console.log(responseData)
-            dispatch(setUserDetails(null))
             navigate('/')
         }
 
@@ -37,63 +29,89 @@ const AdminAside = ({isAdmin, dispatch, navigate }) => {
                     <h1>Sothic</h1>
                 </div>
                 <div className='sothic__admin-aside-nav flex flex-col'>
-                    <Link
+                    <NavLink
                         to={''}
+                        end
                         title='Sothic Admin Dashboard'
-                        onClick={() => setNavActive(0)}
-                        className={setNavClass(0)}
+                        className='flex items-center'
                     >
                         <span className="material-symbols-outlined">
                             grid_view
                         </span>
                         <h3>Dashboard</h3>
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'home-slider'}
-                        title='Sothic Admin Dashboard'
-                        onClick={() => setNavActive(1)}
-                        className={setNavClass(1)}
+                        title='Sothic Home Slider'
+                        className='flex items-center'
                     >
                         <span className="material-symbols-outlined">
                             photo_library
                         </span>
                         <h3>Trang chủ</h3>
-                    </Link>
+                    </NavLink>
                     { isAdmin &&
-                        <Link
+                        <NavLink
                             to={'all-users'}
                             title='Sothic User'
-                            onClick={() => setNavActive(2)}
-                            className={setNavClass(2)}
+                            className='flex items-center'
                         >
                             <span className="material-symbols-outlined">
                                 person
                             </span>
                             <h3>Tài khoản</h3>
-                        </Link>
+                        </NavLink>
                     }
-                    <Link
-                        to={'all-projects'}
+                    <NavLink
+                        to={'all-design-req'}
                         title='Sothic User'
-                        onClick={() => setNavActive(3)}
-                        className={setNavClass(3)}
+                        className='flex items-center'
+                    >
+                        <span className="material-symbols-outlined">
+                            request_page
+                        </span>
+                        <h3>Yêu cầu thiết kế</h3>
+                    </NavLink>
+                    <NavLink
+                        to={'all-projects'}
+                        title='Sothic Projects'
+                        className='flex items-center'
                     >
                         <span className="material-symbols-outlined">
                             inventory
                         </span>
                         <h3>Dự án</h3>
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'all-news'}
-                        title='Sothic User'
-                        onClick={() => setNavActive(4)}
-                        className={setNavClass(4)}
+                        title='Sothic News'
+                        className='flex items-center'
                     >
                         <span className="material-symbols-outlined">
                             newsmode
                         </span>
                         <h3>Tin tức</h3>
-                    </Link>
+                    </NavLink>
+                    <NavLink
+                        to={'all-careers'}
+                        title='Sothic User'
+                        className='flex items-center'
+                    >
+                        <span className="material-symbols-outlined">
+                            work
+                        </span>
+                        <h3>Tuyển dụng</h3>
+                    </NavLink>
+                    <NavLink
+                        to={'all-contact'}
+                        title='Sothic User'
+                        className='flex items-center'
+                    >
+                        <span className="material-symbols-outlined">
+                            contact_page
+                        </span>
+                        <h3>Liên hệ</h3>
+                    </NavLink>
                 </div>
             </div>
             <div className='sothic__admin-aside-bottom'>

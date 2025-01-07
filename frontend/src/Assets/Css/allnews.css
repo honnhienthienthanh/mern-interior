@@ -1,6 +1,9 @@
 .sothic__all-news * {
   color: var(--color-black);
 }
+.sothic__all-news .sothic__upload-submit {
+  color: var(--color-white);
+}
 .sothic__all-news-header {
   padding: 50px 30px;
 }

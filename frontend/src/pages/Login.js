@@ -5,6 +5,7 @@ import Context from '../context/Context'
 import '../Assets/Css/login.css'
 import { useDispatch } from 'react-redux'
 import { setUserDetails } from '../store/userSlice'
+import { notification } from '../store/NotificationContext'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -43,14 +44,18 @@ const Login = () => {
         const responseData = await fetchLogin.json()
 
         if(responseData.success) {
+            notification.success(responseData.message)
             console.log('Login - Login success', responseData.data)
             dispatch(setUserDetails(responseData.data))
-            navigate('/admin')
-            fetchUserDetails()
+            const timeOut = setTimeout(() => {
+                navigate('/admin')
+                fetchUserDetails()
+            }, 3000)
+            return () => clearTimeout(timeOut)
         }
 
         if(responseData.error) {
-            console.log('Login - Login error', responseData)
+            notification.error(responseData.message)
         }
     }
     return (

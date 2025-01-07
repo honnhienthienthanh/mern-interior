@@ -1,18 +1,17 @@
 const fs = require('fs')
-const jwt = require('jsonwebtoken')
 const newsModel = require('../models/newsModel')
 
 async function newsUpload(req, res) {
     try {
         const { originalname, path } = req.file
-        fs.renameSync(path, 'uploads/' + originalname)
+        fs.renameSync(path, 'uploads/' + Date.now() + originalname)
         const { newsTitle, newsSumary, newsContent, newsLink} = req.body
         const news = new newsModel({
             newsTitle,
             newsSumary,
             newsContent,
             newsLink,
-            newsImage: 'uploads/' + originalname,
+            newsImage: Date.now() + originalname,
             author: req.userId
         })
         const saveNews = await news.save()

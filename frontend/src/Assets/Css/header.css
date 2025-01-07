@@ -29,7 +29,7 @@ header {
 .sothic__header-navigation a:hover {
   color: #ff5f09;
 }
-.sothic__header-navigation a.nav-active {
+.sothic__header-navigation a.active {
   color: #ff5f09;
   background-color: #fff;
 }
@@ -141,35 +141,6 @@ header {
   padding: 10px 30px;
   background-color: var(--color-black);
 }
-.sothic__background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
 .sothic__exit {
-  position: relative;
-  display: block;
-  width: 24px;
-  height: 24px;
   margin-right: 20px;
-}
-.sothic__exit::before, .sothic__exit::after {
-  position: absolute;
-  display: block;
-  content: "";
-  width: 21px;
-  height: 2px;
-  background-color: var(--color-black);
-  top: 11px;
-  left: 2px;
-}
-.sothic__exit::before {
-  transform: rotate(45deg);
-}
-.sothic__exit::after {
-  transform: rotate(-45deg);
 }/*# sourceMappingURL=header.css.map */

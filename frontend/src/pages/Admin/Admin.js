@@ -2,57 +2,42 @@ import React, { useEffect, useState } from 'react'
 import '../../Assets/Css/admin.css'
 import { Outlet, useNavigate } from 'react-router-dom'
 import SothicApi from '../../common/SothicApi'
-import { useDispatch, } from 'react-redux'
-import { setUserDetails } from '../../store/userSlice'
-import Context from '../../context/Context'
 import AdminAside from '../../components/AdminAside'
+import { notification, NotificationProvider } from '../../store/NotificationContext'
 
 const Admin = () => {
-    const dispatch = useDispatch()
-    const [isAdmin, setIsAdmin] = useState(true)
+    const [isAdmin, setIsAdmin] = useState(false)
     const navigate = useNavigate()
 
     const fetchUserDetails = async() => {
-        const fetchData = await fetch(SothicApi.current_user.url, {
-            method: SothicApi.current_user.method,
+        const fetchData = await fetch(SothicApi.is_admin.url, {
+            method: SothicApi.is_admin.method,
             credentials: 'include'
-        })
+        }).then(res => res.json())
 
-        const responseData = await fetchData.json()
+        if(fetchData.success) {
+            setIsAdmin(true)
+        }
 
-        if(responseData.success) {
-            dispatch(setUserDetails(responseData.data))
+        if(fetchData.error) {
+            notification.error(fetchData.message)
+            navigate('/')
         }
     }
 
     useEffect(() => {
         fetchUserDetails()
     }, [isAdmin])
-
-    // const user = useSelector(state => state?.user?.user)
-
-    // console.log('Admin - ', user)
-
-    // useEffect(() => {
-    //     if(user?.role !== ROLE.ADMIN) {
-    //         navigate('/')
-    //     } else {
-    //         setIsAdmin(true)
-    //     }
-    // }, [])
     
     return (
-        <Context.Provider value={{
-            fetchUserDetails
-        }}>
-            <div className='sothic__admin'>
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-                <AdminAside isAdmin={isAdmin} dispatch={dispatch} navigate={navigate} />
-                <main className='sothic__admin-main'>
-                    <Outlet />
-                </main>
-            </div>
-        </Context.Provider>
+        <div className='sothic__admin'>
+            <NotificationProvider></NotificationProvider>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+            <AdminAside isAdmin={isAdmin} navigate={navigate} />
+            <main className='sothic__admin-main'>
+                <Outlet />
+            </main>
+        </div>
     )
 }
 

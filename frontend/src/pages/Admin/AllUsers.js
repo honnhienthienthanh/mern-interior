@@ -38,14 +38,14 @@ const AllUsers = () => {
     console.log('AllUsers - Users Data', allUsers)
     return (
         <div className='sothic__admin-all-users'>
-            <h2>All User</h2>
+            <h2>Quản lý tài khoản</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Họ tên</th>
                         <th>Email</th>
-                        <th>Role</th>
-                        <th>Created Date</th>
+                        <th>Quyền hạn</th>
+                        <th>Ngày tạo</th>
                         <th></th>
                     </tr>
                 </thead>

@@ -20,7 +20,6 @@ async function authLogin(req, res, next) {
 
             next()
         })
-        console.log('authLogin - Token: ', token)
     } catch(err) {
         res.status(400).json({ 
             message: err.message || err,

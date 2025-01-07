@@ -13,6 +13,10 @@ const SothicAPI = {
         url: `${API}/user-details`,
         method: 'GET'
     },
+    is_admin: {
+        url: `${API}/is-admin`,
+        method: 'GET'
+    },
     logout: {
         url: `${API}/logout`,
         method: 'GET'
@@ -60,6 +64,38 @@ const SothicAPI = {
     news_update: {
         url: `${API}/update-news`,
         method: 'POST'
+    },
+    careers_get_all: {
+        url: `${API}/get-all-careers`,
+        method: 'POST'
+    },
+    careers_upload: {
+        url: `${API}/upload-careers`,
+        method: 'POST'
+    },
+    careers_edit: {
+        url: `${API}/update-careers`,
+        method: 'POST'
+    },
+    careers_details: {
+        url: `${API}/careers-details`,
+        method: 'POST'
+    },
+    contact_post: {
+        url: `${API}/post-contact`,
+        method: 'POST'
+    },
+    design_req: {
+        url: `${API}/design-req`,
+        method: 'POST'
+    },
+    home_slide_upload: {
+        url: `${API}/upload-slide`,
+        method: 'POST'
+    },
+    home_get_slide: {
+        url: `${API}/get-slide`,
+        method: 'GET'
     }
 }
 

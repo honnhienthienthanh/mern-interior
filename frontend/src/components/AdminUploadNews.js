@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../Assets/Css/uploadnews.css'
 import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
+import { notification } from '../store/NotificationContext'
 
 const AdminUploadNews = ({ onClose }) => {
     const [newsData, setNewsData] = useState({
@@ -38,7 +39,12 @@ const AdminUploadNews = ({ onClose }) => {
         })
 
         if(postNews.ok) {
+            notification.success('Thêm tin tức mới thành công!')
             onClose()
+        }
+
+        if(!postNews.ok) {
+            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
         }
     }
     return (

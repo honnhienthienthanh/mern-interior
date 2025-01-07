@@ -1,6 +1,6 @@
 const userModel = require('../models/userModel')
 
-async function projectUploadPermission(userId) {
+async function userPermission(userId) {
     const user = await userModel.findById(userId)
 
     if(user.role !== 'ADMIN') {
@@ -10,4 +10,4 @@ async function projectUploadPermission(userId) {
     return true
 }
 
-module.exports = projectUploadPermission
+module.exports = userPermission

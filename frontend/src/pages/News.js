@@ -38,12 +38,12 @@ const News = () => {
                     { newsData.length > 0 && newsData.map((news, index) => {
                         return (
                             <Link
-                                to={'/news-details/' + news.newsLink}
+                                to={'/news/' + news.newsLink}
                                 className='sothic__news-content-item'
                                 key={news.newsTitle + index}
                             >
                                 <img
-                                    src={'http://localhost:8080/' + news.newsImage}
+                                    src={'http://localhost:8080/uploads/' + news.newsImage}
                                     alt={`Sothic Studio - ${ news.newsTitle }`}
                                 />
                                 <h3 className='uppercase'>{ news.newsTitle }</h3>

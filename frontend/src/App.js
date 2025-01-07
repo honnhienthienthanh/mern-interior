@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import Context from './context/Context'
 import { useDispatch } from 'react-redux'
 import { setUserDetails } from './store/userSlice'
+import { NotificationProvider } from './store/NotificationContext'
 
 function App() {
     const dispatch = useDispatch()
@@ -20,18 +21,20 @@ function App() {
         const responseData = await fetchData.json()
 
         if(responseData.success) {
+            console.log(responseData)
             dispatch(setUserDetails(responseData.data))
         }
     }
 
     useEffect(() => {
         fetchUserDetails()
-    })
+    }, [])
     return (
         <>
             <Context.Provider value={{
                 fetchUserDetails //fetch user details
             }}>
+                <NotificationProvider></NotificationProvider>
                 <Header />
                 <main>
                     <Outlet />
