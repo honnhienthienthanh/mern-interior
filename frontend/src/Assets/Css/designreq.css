@@ -1,0 +1,38 @@
+.sothic__all-design-req {
+  max-height: 100vh;
+  overflow-y: scroll;
+}
+.sothic__all-design-req .sothic__admin-home-item {
+  position: relative;
+  padding: 20px;
+}
+.sothic__all-design-req .sothic__admin-home-item-content {
+  width: calc(100% - 99px);
+  gap: 15px;
+}
+.sothic__all-design-req .sothic__admin-home-item-content p {
+  max-height: -moz-max-content;
+  max-height: max-content;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.sothic__all-design-req .sothic__admin-home-item-content p span {
+  display: inline-block;
+  width: 300px;
+}
+.sothic__all-design-req .sothic__admin-home-item-content > div {
+  gap: 10px;
+}
+.sothic__all-design-req .sothic__admin-home-item-content > div p:last-child {
+  font-weight: 400;
+}
+.sothic__all-design-req .sothic__admin-home-item::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: rgb(240, 240, 240);
+  bottom: -10px;
+  left: 0;
+}/*# sourceMappingURL=designreq.css.map */

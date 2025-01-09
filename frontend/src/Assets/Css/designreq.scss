@@ -1,0 +1,44 @@
+.sothic__all-design-req {
+    max-height: 100vh;
+    overflow-y: scroll;
+
+    .sothic__admin-home-item {
+        position: relative;
+        padding: 20px;
+
+        &-content {
+            width: calc(100% - 99px);
+            gap: 15px;
+
+            p {
+                max-height: max-content;
+                font-size: 18px;
+                line-height: 24px;
+                font-weight: 500;
+
+                span {
+                    display: inline-block;
+                    width: 300px;
+                }
+            }
+
+            & > div {
+                gap: 10px;
+
+                p:last-child {
+                    font-weight: 400;
+                }
+            }
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 2px;
+            background-color: rgb(240, 240, 240);
+            bottom: -10px;
+            left: 0;
+        }
+    }
+}

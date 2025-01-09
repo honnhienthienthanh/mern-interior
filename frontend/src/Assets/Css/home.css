@@ -116,10 +116,11 @@
   align-items: center;
   gap: 10px;
   bottom: 54px;
-  left: 30px;
+  left: 10%;
   z-index: 100;
 }
 .carousel .arrows button {
+  position: relative;
   width: 40px;
   height: 40px;
   font-size: large;
@@ -131,6 +132,24 @@
 .carousel .arrows button:hover {
   background-color: #eee;
   color: #555;
+}
+.carousel .arrows button::before {
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: solid var(--color-white);
+  top: 58%;
+}
+.carousel .arrows button#next::before {
+  border-width: 2px 2px 0 0;
+  left: 34%;
+  transform: rotate(45deg) translate(-50%, -50%);
+}
+.carousel .arrows button#prev::before {
+  border-width: 0 0 2px 2px;
+  left: 44%;
+  transform: rotate(45deg) translate(-50%, -50%);
 }
 .carousel .time {
   position: absolute;
@@ -199,13 +218,81 @@
   }
 }
 
+.sothic__home .design-request {
+  position: fixed;
+  width: 63px;
+  height: 63px;
+  background-color: var(--color-white);
+  border-radius: 100%;
+  bottom: 100px;
+  right: 50px;
+  z-index: 999;
+  transition: var(--transition-all);
+}
+.sothic__home .design-request:hover {
+  transform: scale(1.1);
+  transition: var(--transition-all);
+}
+.sothic__home .design-request.design-show {
+  visibility: visible;
+  opacity: 1;
+  animation: fadeIn 0.8s forwards;
+}
+.sothic__home .design-request.design-hide {
+  visibility: hidden;
+  opacity: 0;
+  animation: fadeOut 0.8s forwards;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (width >= 1920px) {
+  .carousel .list .item .content {
+    padding-right: 18%;
+  }
+}
+@media screen and (width < 1025px) {
+  .sothic__home .sothic__popup .sothic__form::-webkit-scrollbar {
+    display: none;
+  }
+}
 @media screen and (width <= 678px) {
   .carousel .list .item .content {
     padding-right: 0;
   }
+  .carousel .arrows {
+    bottom: 20px;
+    left: 30px;
+  }
 }
-@media screen and (width >= 1920px) {
-  .carousel .list .item .content {
-    padding-right: 18%;
+@media screen and (width < 576px) {
+  .sothic__home .design-request {
+    bottom: 70px;
+    right: 20px;
+  }
+}
+@media screen and (width < 376px) {
+  .sothic__home .design-request {
+    bottom: 65px;
+    right: 15px;
+  }
+  .sothic__home .sothic__popup .sothic__form {
+    min-height: 100%;
+    padding: 35px 20px;
+    border-radius: 0;
   }
 }/*# sourceMappingURL=home.css.map */

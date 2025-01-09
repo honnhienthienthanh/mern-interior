@@ -2,7 +2,7 @@ const sliderModel = require('../models/sliderModel')
 
 async function homeGetSlide(req, res) {
     try {
-        const allSlide = await sliderModel.find()
+        const allSlide = await sliderModel.find().sort({ createdAt: -1 })
 
         if(allSlide) {
             res.status(201).json({

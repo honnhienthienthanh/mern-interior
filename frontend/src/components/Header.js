@@ -54,13 +54,6 @@ const Header = () => {
                     >
                         LIÊN HỆ
                     </NavLink>
-                    <NavLink
-                        to={'/media'}
-                        title='Sothic Studio - Media'
-                        className='uppercase'
-                    >
-                        MEDIA
-                    </NavLink>
                 </nav>
                 <div className='sothic__header-search flex items-center justify-center xs:hidden'>
                     <input
@@ -109,9 +102,6 @@ const Header = () => {
                         </Link>
                         <Link to={'/about'} title='' onClick={() => setMobileMenu(prev => !prev)}>
                             ABOUT
-                        </Link>
-                        <Link to={'/media'} title='' onClick={() => setMobileMenu(prev => !prev)}>
-                            MEDIA
                         </Link>
                         <Link to={'/news'} title='' onClick={() => setMobileMenu(prev => !prev)}>
                             NEWS

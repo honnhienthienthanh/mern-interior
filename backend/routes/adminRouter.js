@@ -12,6 +12,10 @@ const isAdmin = require('../controller/isAdmin')
 const careersEdit = require('../controller/careersEdit')
 const newsUpdate = require('../controller/newsUpdate')
 const homeSlideUpload = require('../controller/homeSlideUpload')
+const designREQGet = require('../controller/designREQGet')
+const designREQDelete = require('../controller/designREQDelete')
+const projectDelete = require('../controller/projectDelete')
+const newsDelete = require('../controller/newsDelete')
 const uploadImage = multer({
     dest: 'uploads/',
     limits: 20 * 1024 * 1024
@@ -28,10 +32,12 @@ adminRouter.post('/update-user-role', authLogin, updateUserRole)
 // Admin Project
 adminRouter.post('/project-upload', authLogin, projectUploadCtr)
 adminRouter.post('/project-update', authLogin, projectUpdateCtr)
+adminRouter.post('/delete-project', authLogin, projectDelete)
 
 // News
 adminRouter.post('/upload-news', authLogin, uploadImage.single('newsImage'), newsUpload)
 adminRouter.post('/update-news', authLogin, uploadImage.single('newsImage'), newsUpdate)
+adminRouter.post('/delete-news', authLogin, newsDelete)
 
 // Careers
 adminRouter.post('/upload-careers', authLogin, uploadImage.single('careersImage'), careersUpload)
@@ -39,5 +45,9 @@ adminRouter.post('/update-careers', authLogin, uploadImage.single('careersImage'
 
 // Home
 adminRouter.post('/upload-slide', uploadImage.single('slideImage'), homeSlideUpload)
+
+// Design REQ
+adminRouter.get('/get-design-req', authLogin, designREQGet)
+adminRouter.post('/delete-design-req', authLogin, designREQDelete)
 
 module.exports = adminRouter

@@ -100,10 +100,10 @@ const Home = () => {
                                     <p className='des'>
                                         {slide?.slideDescription}
                                     </p>
-                                    <div className='buttons'>
+                                    {/* <div className='buttons'>
                                         <button>SEE MORE</button>
                                         <button>SUBSCRIBE</button>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         )
@@ -112,8 +112,8 @@ const Home = () => {
 
                 {/* Arrows */}
                 <div className='arrows'>
-                    <button id='prev'>{'<'}</button>
-                    <button id='next'>{'>'}</button>
+                    <button id='prev'>&nbsp;</button>
+                    <button id='next'>&nbsp;</button>
                 </div>
 
                 <div className='time'></div>
@@ -124,6 +124,15 @@ const Home = () => {
                     onClose={() => setShowAdvisory(false)}
                 />
             }
+            <button
+                className={ showAdvisory ?
+                    'design-request flex items-center justify-center design-hide' :
+                    'design-request flex items-center justify-center design-show'
+                }
+                onClick={() => setShowAdvisory(true)}
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#5f6368"><path d="M200-200h360v-200h200v-360H200v560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v400L600-120H200Zm80-280v-80h200v80H280Zm0-160v-80h400v80H280Zm-80 360v-560 560Z"/></svg>
+            </button>
         </div>
     )
 }

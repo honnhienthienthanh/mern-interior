@@ -39,49 +39,58 @@ const AllUsers = () => {
     return (
         <div className='sothic__admin-all-users'>
             <h2>Quản lý tài khoản</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Họ tên</th>
-                        <th>Email</th>
-                        <th>Quyền hạn</th>
-                        <th>Ngày tạo</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { allUsers.map((user, index) => {
-                        return (
-                            <tr key={user + index}>
-                                <td>{user?.name}</td>
-                                <td>{user?.email}</td>
-                                <td>{user?.role}</td>
-                                <td>{moment(user?.createdAt).format('l')}</td>
-                                <td>
-                                    <div className='flex items-center justify-center'>
-                                        <button
-                                            className='flex items-center justify-center'
-                                            onClick={() => {
-                                                setUserRolePopup(true)
-                                                setUpdateUser(user)
-                                            }}
-                                        >
-                                            <span className="material-symbols-outlined">
-                                                edit
-                                            </span>
-                                        </button>
-                                        <button className='flex items-center justify-center'>
-                                            <span className="material-symbols-outlined">
-                                                delete
-                                            </span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+            { allUsers.length > 0 ? (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Quyền hạn</th>
+                            <th>Ngày tạo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        { allUsers.map((user, index) => {
+                            return (
+                                <tr key={user + index}>
+                                    <td>{user?.name}</td>
+                                    <td>{user?.email}</td>
+                                    <td>{user?.role}</td>
+                                    <td>{moment(user?.createdAt).format('l')}</td>
+                                    <td>
+                                        <div className='flex items-center justify-center'>
+                                            <button
+                                                className='flex items-center justify-center'
+                                                onClick={() => {
+                                                    setUserRolePopup(true)
+                                                    setUpdateUser(user)
+                                                }}
+                                            >
+                                                <span className="material-symbols-outlined">
+                                                    edit
+                                                </span>
+                                            </button>
+                                            <button className='flex items-center justify-center'>
+                                                <span className="material-symbols-outlined">
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            ) : (
+                <div
+                    className='flex items-center justify-center'
+                    style={{ padding: '30px 0'}}
+                >
+                    Hiện không có tài khoản nào để hiển thị!
+                </div>
+            )}
             { userRolePopup &&
                 <ChangeUserRole
                     userId={updateUser._id}

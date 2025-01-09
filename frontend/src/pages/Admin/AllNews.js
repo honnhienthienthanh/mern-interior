@@ -4,6 +4,8 @@ import AdminUploadNews from '../../components/AdminUploadNews'
 import SothicAPI from '../../common/SothicApi'
 import moment from 'moment'
 import AdminEditNews from '../../components/AdminEditNews'
+import AdminConfirmBox from '../../components/AdminConfirmBox'
+import { notification } from '../../store/NotificationContext'
 
 const AllNews = () => {
     const [newsData, setNewsData] = useState([])
@@ -26,13 +28,37 @@ const AllNews = () => {
         }
 
         if(responseData.error) {
-            console.log('All News', responseData)
+            notification.error(responseData.message)
         }
     }
 
     useEffect(() => {
         getAllNews()
     }, [])
+
+    const [delNewsStatus, setDelNewsStatus] = useState(false)
+    const [newsId, setNewsId] = useState({
+        _id: ''
+    })
+
+    async function deleteNews() {
+        const delNews = fetch(SothicAPI.news_delete.url, {
+            method: SothicAPI.news_delete.method,
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newsId)
+        }).then(res => res.json())
+
+        if(delNews.success) {
+            notification.success(delNews.message)
+        }
+
+        if(delNews.error) {
+            notification.error(delNews.message)
+        }
+    }
     return (
         <div className='sothic__all-news'>
             <div className='sothic__all-news-header flex items-center justify-between'>
@@ -48,60 +74,76 @@ const AllNews = () => {
                 </button>
             </div>
             <div className='sothic__all-news-list'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ảnh</th>
-                            <th>Tiêu đề</th>
-                            <th>Ngày tạo</th>
-                            <th>Tác giả</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { newsData.length > 0 && newsData.map((news, index) => {
-                            return  (
-                                <tr key={news?.newsTitle + index}>
-                                    <td>
-                                        <img
-                                            src={'http://localhost:8080/uploads/' + news?.newsImage}
-                                            alt={`Sothic Studio - ${news?.newsTitle}`}
-                                        />
-                                    </td>
-                                    <td>
-                                        <p>{news?.newsTitle}</p>
-                                    </td>
-                                    <td>
-                                        <p>{moment(news?.createdAt).format('lll')}</p>
-                                    </td>
-                                    <td>
-                                        <p>{news?.author.name}</p>
-                                    </td>
-                                    <td>
-                                        <div className='flex items-center justify-center'>
-                                            <button
-                                                className='flex items-center justify-center'
-                                                onClick={() => {
-                                                    setShowEditNews(true)
-                                                    setEditNews(news)
-                                                }}
-                                            >
-                                                <span className="material-symbols-outlined">
-                                                    edit
-                                                </span>
-                                            </button>
-                                            <button className='flex items-center justify-center'>
-                                                <span className="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                { newsData.length > 0 ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Tiêu đề</th>
+                                <th>Ngày tạo</th>
+                                <th>Tác giả</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { newsData.map((news, index) => {
+                                return  (
+                                    <tr key={news?.newsTitle + index}>
+                                        <td>
+                                            <img
+                                                src={'http://localhost:8080/uploads/' + news?.newsImage}
+                                                alt={`Sothic Studio - ${news?.newsTitle}`}
+                                            />
+                                        </td>
+                                        <td>
+                                            <p>{news?.newsTitle}</p>
+                                        </td>
+                                        <td>
+                                            <p>{moment(news?.createdAt).format('lll')}</p>
+                                        </td>
+                                        <td>
+                                            <p>{news?.author.name}</p>
+                                        </td>
+                                        <td>
+                                            <div className='flex items-center justify-center'>
+                                                <button
+                                                    className='flex items-center justify-center'
+                                                    onClick={() => {
+                                                        setShowEditNews(true)
+                                                        setEditNews(news)
+                                                    }}
+                                                >
+                                                    <span className="material-symbols-outlined">
+                                                        edit
+                                                    </span>
+                                                </button>
+                                                <button
+                                                    className='flex items-center justify-center'
+                                                    onClick={() => {
+                                                        setNewsId({ _id: news?._id })
+                                                        setDelNewsStatus(true)
+                                                    }}
+                                                >
+                                                    <span className="material-symbols-outlined">
+                                                        delete
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                ) : (
+                    <div
+                        className='flex items-center justify-center'
+                        style={{ padding: '30px 0'}}
+                    >
+                        Hiện không có tin tức nào để hiển thị!
+                    </div>
+                )}
+                
             </div>
             { addNew &&
                 <AdminUploadNews
@@ -114,6 +156,15 @@ const AllNews = () => {
                     prevData={editNews}
                     refresh={getAllNews}
                     onClose={() => setShowEditNews(false)}
+                />
+            }
+            { delNewsStatus &&
+                <AdminConfirmBox
+                    showStatus={delNewsStatus}
+                    message={'Bạn chắc chắn muốn xóa tin tức này chứ?'}
+                    userAction={deleteNews}
+                    STClose={() => setDelNewsStatus(false)}
+                    refresh={getAllNews}
                 />
             }
         </div>

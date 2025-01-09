@@ -48,60 +48,69 @@ const AllCareers = () => {
                 </button>
             </div>
             <div className='sothic__all-news-list'>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ảnh</th>
-                            <th>Tiêu đề</th>
-                            <th>Ngày tạo</th>
-                            <th>Tác giả</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        { careersData.length > 0 && careersData.map((careers, index) => {
-                            return  (
-                                <tr key={careers?.careersTitle + index}>
-                                    <td>
-                                        <img
-                                            src={'http://localhost:8080/uploads/' + careers?.careersImage}
-                                            alt={`Sothic Studio - ${careers?.careersTitle}`}
-                                        />
-                                    </td>
-                                    <td>
-                                        <p>{careers?.careersTitle}</p>
-                                    </td>
-                                    <td>
-                                        <p>{moment(careers?.createdAt).format('lll')}</p>
-                                    </td>
-                                    <td>
-                                        <p>{careers?.author.name}</p>
-                                    </td>
-                                    <td>
-                                        <div className='flex items-center justify-center'>
-                                            <button
-                                                className='flex items-center justify-center'
-                                                onClick={() => {
-                                                    setShowEditCareers(true)
-                                                    setEditCareers(careers)
-                                                }}
-                                            >
-                                                <span className="material-symbols-outlined">
-                                                    edit
-                                                </span>
-                                            </button>
-                                            <button className='flex items-center justify-center'>
-                                                <span className="material-symbols-outlined">
-                                                    delete
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
+                {careersData.length > 0 ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Tiêu đề</th>
+                                <th>Ngày tạo</th>
+                                <th>Tác giả</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { careersData.map((careers, index) => {
+                                return  (
+                                    <tr key={careers?.careersTitle + index}>
+                                        <td>
+                                            <img
+                                                src={'http://localhost:8080/uploads/' + careers?.careersImage}
+                                                alt={`Sothic Studio - ${careers?.careersTitle}`}
+                                            />
+                                        </td>
+                                        <td>
+                                            <p>{careers?.careersTitle}</p>
+                                        </td>
+                                        <td>
+                                            <p>{moment(careers?.createdAt).format('lll')}</p>
+                                        </td>
+                                        <td>
+                                            <p>{careers?.author.name}</p>
+                                        </td>
+                                        <td>
+                                            <div className='flex items-center justify-center'>
+                                                <button
+                                                    className='flex items-center justify-center'
+                                                    onClick={() => {
+                                                        setShowEditCareers(true)
+                                                        setEditCareers(careers)
+                                                    }}
+                                                >
+                                                    <span className="material-symbols-outlined">
+                                                        edit
+                                                    </span>
+                                                </button>
+                                                <button className='flex items-center justify-center'>
+                                                    <span className="material-symbols-outlined">
+                                                        delete
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                ) : (
+                    <div
+                        className='flex items-center justify-center'
+                        style={{ padding: '30px 0'}}
+                    >
+                        Hiện không có tin tuyển dụng nào để hiển thị!
+                    </div>
+                )}
             </div>
             { addCareers &&
                 <AdminUploadCareers

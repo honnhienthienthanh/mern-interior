@@ -41,6 +41,10 @@ const SothicAPI = {
         url: `${API}/project-update`,
         method: 'POST'
     },
+    project_delete: {
+        url: `${API}/delete-project`,
+        method: 'POST'
+    },
     project_by_category: {
         url: `${API}/projects-by-category`,
         method: 'POST'
@@ -65,6 +69,10 @@ const SothicAPI = {
         url: `${API}/update-news`,
         method: 'POST'
     },
+    news_delete: {
+        url: `${API}/delete-news`,
+        method: 'POST'
+    },
     careers_get_all: {
         url: `${API}/get-all-careers`,
         method: 'POST'
@@ -87,6 +95,14 @@ const SothicAPI = {
     },
     design_req: {
         url: `${API}/design-req`,
+        method: 'POST'
+    },
+    design_req_get: {
+        url: `${API}/get-design-req`,
+        method: 'GET'
+    },
+    design_req_delete: {
+        url: `${API}/delete-design-req`,
         method: 'POST'
     },
     home_slide_upload: {

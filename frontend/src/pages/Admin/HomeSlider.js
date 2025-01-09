@@ -39,39 +39,48 @@ const HomeSlider = () => {
                     <h2>Thêm slide mới</h2>
                 </button>
             </div>
-            { slideData.length > 0 && slideData.map((slide, index) => {
-                return (
-                    <div className='sothic__admin-home-item flex items-center' key={slide?.slideTitle + index}>
-                        <div className='sothic__admin-home-item-img'>
-                            <img src={'http://localhost:8080/' + slide?.slideImage} width={250} alt='' />
+            { slideData.length > 0 ? (
+                slideData.map((slide, index) => {
+                    return (
+                        <div className='sothic__admin-home-item flex items-center' key={slide?.slideTitle + index}>
+                            <div className='sothic__admin-home-item-img'>
+                                <img src={'http://localhost:8080/' + slide?.slideImage} width={250} alt='' />
+                            </div>
+                            <div className='sothic__admin-home-item-content'>
+                                <h5>{ slide?.slideAuthor }</h5>
+                                <h3>{ slide?.slideTitle }</h3>
+                                <h4>{ slide?.slideCategory }</h4>
+                                <p>{ slide?.slideDescription }</p>
+                            </div>
+                            <div className='sothic__admin-home-item-action flex flex-col justify-center'>
+                                <button
+                                    type='button'
+                                    className='user-edit'
+                                >
+                                    <span className="material-symbols-outlined">
+                                        edit
+                                    </span>
+                                </button>
+                                <button
+                                    type='button'
+                                    className='user-delete'
+                                >
+                                    <span className="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <div className='sothic__admin-home-item-content'>
-                            <h5>{ slide?.slideAuthor }</h5>
-                            <h3>{ slide?.slideTitle }</h3>
-                            <h4>{ slide?.slideCategory }</h4>
-                            <p>{ slide?.slideDescription }</p>
-                        </div>
-                        <div className='sothic__admin-home-item-action flex flex-col justify-center'>
-                            <button
-                                type='button'
-                                className='user-edit'
-                            >
-                                <span className="material-symbols-outlined">
-                                    edit
-                                </span>
-                            </button>
-                            <button
-                                type='button'
-                                className='user-delete'
-                            >
-                                <span className="material-symbols-outlined">
-                                    delete
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                )
-            })}
+                    )
+                })
+            ) : (
+                <div
+                    className='flex items-center justify-center'
+                    style={{ padding: '30px 0'}}
+                >
+                    Hiện không có slide nào để hiển thị!
+                </div>
+            )}
             
             { showAddSlide &&
                 <SlideUpload

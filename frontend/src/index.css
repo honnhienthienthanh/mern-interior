@@ -193,7 +193,7 @@ button { cursor: pointer; }
     left: 0;
     opacity: 0;
     transform: scale(0);
-    z-index: 99;
+    z-index: 998;
 }
 
 .sothic__background {
@@ -250,6 +250,7 @@ button { cursor: pointer; }
     gap: 10px;
     width: 567px;
     max-height: 80%;
+    overflow-y: scroll;
     padding: 50px;
     background-color: var(--color-white);
     border-radius: 5px;
@@ -284,7 +285,8 @@ button { cursor: pointer; }
 }
 
 .sothic__popup .sothic__form textarea {
-    height: 125px;
+    min-height: 125px;
+    max-height: 125px;
     resize: none;
     padding: 16px;
 }
