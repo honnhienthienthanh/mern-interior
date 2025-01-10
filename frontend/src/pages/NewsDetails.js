@@ -39,7 +39,7 @@ const NewsDetails = () => {
             { newsDetails && (
                 <div className='sothic__news-details-container flex flex-col'>
                     <img
-                        src={'http://localhost:8080/uploads/' + newsDetails?.newsImage}
+                        src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + newsDetails?.newsImage}
                         alt={'Sothic Studio - ' + newsDetails?.newsTitle}
                     />
                     <h2>{ newsDetails?.newsTitle }</h2>

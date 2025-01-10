@@ -91,7 +91,7 @@ const AllNews = () => {
                                     <tr key={news?.newsTitle + index}>
                                         <td>
                                             <img
-                                                src={'http://localhost:8080/uploads/' + news?.newsImage}
+                                                src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + news?.newsImage}
                                                 alt={`Sothic Studio - ${news?.newsTitle}`}
                                             />
                                         </td>

@@ -65,7 +65,7 @@ const AllCareers = () => {
                                     <tr key={careers?.careersTitle + index}>
                                         <td>
                                             <img
-                                                src={'http://localhost:8080/uploads/' + careers?.careersImage}
+                                                src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + careers?.careersImage}
                                                 alt={`Sothic Studio - ${careers?.careersTitle}`}
                                             />
                                         </td>

@@ -1,4 +1,4 @@
-const API = 'http://localhost:8080/api'
+const API = `${process.env.REACT_APP_BACKEND_URI}/api`
 
 const SothicAPI = {
     register: {

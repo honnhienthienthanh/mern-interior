@@ -44,7 +44,7 @@ const HomeSlider = () => {
                     return (
                         <div className='sothic__admin-home-item flex items-center' key={slide?.slideTitle + index}>
                             <div className='sothic__admin-home-item-img'>
-                                <img src={'http://localhost:8080/' + slide?.slideImage} width={250} alt='' />
+                                <img src={process.env.REACT_APP_BACKEND_URI + '/' + slide?.slideImage} width={250} alt='' />
                             </div>
                             <div className='sothic__admin-home-item-content'>
                                 <h5>{ slide?.slideAuthor }</h5>
