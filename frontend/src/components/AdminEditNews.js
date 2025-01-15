@@ -3,7 +3,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const AdminEditNews = ({ prevData, onClose, refresh }) => {
+const AdminEditNews = ({ token, prevData, onClose, refresh }) => {
     const [newsData, setNewsData] = useState({
         ...prevData,
         _id: prevData?._id,
@@ -42,7 +42,7 @@ const AdminEditNews = ({ prevData, onClose, refresh }) => {
 
         const postNews = await fetch(SothicAPI.news_update.url, {
             method: SothicAPI.news_update.method,
-            credentials: 'include',
+            headers: { token },
             body: news
         }).then(res => res.json())
 

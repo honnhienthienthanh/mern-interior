@@ -4,7 +4,7 @@ import SothicAPI from '../../common/SothicApi'
 import { notification } from '../../store/NotificationContext'
 import SlideUpload from '../../components/SlideUpload'
 
-const HomeSlider = () => {
+const HomeSlider = ({ token }) => {
     const [slideData, setSlideData] = useState([])
     const [showAddSlide, setShowAddSlide] = useState(false)
 
@@ -84,6 +84,7 @@ const HomeSlider = () => {
             
             { showAddSlide &&
                 <SlideUpload
+                    token={token}
                     showStatus={showAddSlide}
                     STClose={() => setShowAddSlide(false)}
                     STRefresh={getAllSlide}

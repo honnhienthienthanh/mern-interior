@@ -34,7 +34,7 @@ async function userLoginCtr(req, res) {
                 secure: true
             }
             res.cookie('token', token, tokenOption).json({
-                data: user,
+                data: token,
                 message: 'Login successfully!',
                 success: true,
                 error: false

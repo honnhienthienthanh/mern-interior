@@ -3,7 +3,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const AdminEditCareers = ({ prevData, onClose, refresh }) => {
+const AdminEditCareers = ({ token, prevData, onClose, refresh }) => {
     const [careersData, setCareersData] = useState({
         ...prevData,
         _id: prevData?._id,
@@ -42,7 +42,7 @@ const AdminEditCareers = ({ prevData, onClose, refresh }) => {
 
         const postCareers = await fetch(SothicAPI.careers_edit.url, {
             method: SothicAPI.careers_edit.method,
-            credentials: 'include',
+            headers: { token },
             body: careers
         }).then(res => res.json())
 

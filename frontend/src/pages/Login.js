@@ -1,22 +1,14 @@
-import React, { useContext, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import SothicApi from '../common/SothicApi'
-import Context from '../context/Context'
 import '../Assets/Css/login.css'
-import { useDispatch } from 'react-redux'
-import { setUserDetails } from '../store/userSlice'
 import { notification } from '../store/NotificationContext'
 
-const Login = () => {
-    const dispatch = useDispatch()
+const Login = ({ setToken }) => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''
     })
-
-    const navigate = useNavigate()
-
-    const { fetchUserDetails } = useContext(Context)
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -34,7 +26,6 @@ const Login = () => {
 
         const fetchLogin = await fetch(SothicApi.login.url, {
             method: SothicApi.login.method,
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -44,14 +35,9 @@ const Login = () => {
         const responseData = await fetchLogin.json()
 
         if(responseData.success) {
+            setToken(responseData.data)
+            localStorage.setItem('token', responseData.data)
             notification.success(responseData.message)
-            console.log('Login - Login success', responseData.data)
-            dispatch(setUserDetails(responseData.data))
-            const timeOut = setTimeout(() => {
-                navigate('/admin')
-                fetchUserDetails()
-            }, 3000)
-            return () => clearTimeout(timeOut)
         }
 
         if(responseData.error) {

@@ -3,6 +3,8 @@ import '../../Assets/Css/allusers.css'
 import SothicAPI from '../../common/SothicApi'
 import moment from 'moment'
 import ChangeUserRole from '../../components/ChangeUserRole'
+import { useOutletContext } from 'react-router-dom'
+import { notification } from '../../store/NotificationContext'
 
 const AllUsers = () => {
     const [allUsers, setAllUsers] = useState([])
@@ -14,10 +16,12 @@ const AllUsers = () => {
         role: ''
     })
 
+    const token = useOutletContext()
+
     const fetchGetAllUsers = async() => {
         const fetchData = await fetch(SothicAPI.get_all_users.url, {
             method: SothicAPI.get_all_users.method,
-            credentials: 'include'
+            headers: { token }
         })
 
         const responseData = await fetchData.json()
@@ -27,15 +31,13 @@ const AllUsers = () => {
         }
 
         if(responseData.error) {
-            console.log('AllUsers', responseData)
+            notification.error(responseData.error)
         }
     }
 
     useEffect(() => {
         fetchGetAllUsers()
     }, [])
-    
-    console.log('AllUsers - Users Data', allUsers)
     return (
         <div className='sothic__admin-all-users'>
             <h2>Quản lý tài khoản</h2>
@@ -93,6 +95,7 @@ const AllUsers = () => {
             )}
             { userRolePopup &&
                 <ChangeUserRole
+                    token={token}
                     userId={updateUser._id}
                     name={updateUser.name}
                     email={updateUser.email}

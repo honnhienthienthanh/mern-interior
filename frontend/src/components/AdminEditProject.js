@@ -6,7 +6,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const AdminEditProject = ({ prevData, onClose, refresh }) => {
+const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
         ...prevData,
         projectName: prevData?.projectName,
@@ -72,9 +72,9 @@ const AdminEditProject = ({ prevData, onClose, refresh }) => {
 
         const fetchProject = await fetch(SothicAPI.project_update.url, {
             method: SothicAPI.project_update.method,
-            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                token
             },
             body: JSON.stringify(projectData)
         })

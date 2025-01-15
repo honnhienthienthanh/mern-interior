@@ -3,7 +3,7 @@ import STCategory from '../common/STCategory'
 import SothicAPI from '../common/SothicApi'
 import { notification } from '../store/NotificationContext'
 
-const SlideUpload = ({ showStatus, STClose, STRefresh}) => {
+const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
     const [show, setShow] = useState(showStatus)
     const [slideData, setSlideData] = useState({
         slideAuthor: '',
@@ -45,7 +45,7 @@ const SlideUpload = ({ showStatus, STClose, STRefresh}) => {
 
         const addSlide = await fetch(SothicAPI.home_slide_upload.url, {
             method: SothicAPI.home_slide_upload.method,
-            credentials: 'include',
+            headers: { token },
             body: newSlide
         }).then(res => res.json())
 

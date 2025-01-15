@@ -4,7 +4,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const AdminUploadNews = ({ onClose }) => {
+const AdminUploadNews = ({ token, onClose }) => {
     const [newsData, setNewsData] = useState({
         newsTitle: '',
         newsSumary: '',
@@ -34,7 +34,7 @@ const AdminUploadNews = ({ onClose }) => {
 
         const postNews = await fetch(SothicAPI.news_upload.url, {
             method: SothicAPI.news_upload.method,
-            credentials: 'include',
+            headers: { token },
             body: news
         })
 

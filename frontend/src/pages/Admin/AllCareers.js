@@ -4,6 +4,7 @@ import SothicAPI from '../../common/SothicApi'
 import moment from 'moment'
 import AdminUploadCareers from '../../components/AdminUploadCareers'
 import AdminEditCareers from '../../components/AdminEditCareers'
+import { useOutletContext } from 'react-router-dom'
 
 const AllCareers = () => {
     const [careersData, setCareersData] = useState([])
@@ -16,6 +17,8 @@ const AllCareers = () => {
         careersImage: [],
         careersContent: ''
     })
+
+    const token = useOutletContext()
 
     async function getAllCareers() {
         const allCareers = await fetch(SothicAPI.careers_get_all.url)
@@ -114,12 +117,14 @@ const AllCareers = () => {
             </div>
             { addCareers &&
                 <AdminUploadCareers
+                token={token}
                     onClose={() => setAddCareers(false)}
                 />
             }
 
             { showEditCareers &&
                 <AdminEditCareers
+                    token={token}
                     prevData={editCareers}
                     onClose={() => setShowEditCareers(false)}
                     refresh={getAllCareers}

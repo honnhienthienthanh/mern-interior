@@ -5,6 +5,7 @@ import SothicAPI from '../../common/SothicApi'
 import AdminEditProject from '../../components/AdminEditProject'
 import AdminConfirmBox from '../../components/AdminConfirmBox'
 import { notification } from '../../store/NotificationContext'
+import { useOutletContext } from 'react-router-dom'
 
 const AllProjects = () => {
     const [addProject, setAddProject] = useState(false)
@@ -20,6 +21,8 @@ const AllProjects = () => {
         projectAddress: '',
         projectImages: []
     })
+
+    const token = useOutletContext()
 
     const fetchAllProject = async() => {
         const fetchAllProject = await fetch(SothicAPI.all_project.url)
@@ -46,7 +49,7 @@ const AllProjects = () => {
     async function deleteProject() {
         const delProj = await fetch(SothicAPI.project_delete.url, {
             method: SothicAPI.project_delete.method,
-            credentials: 'include',
+            headers: { token },
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -123,10 +126,15 @@ const AllProjects = () => {
                 )}
             </div>
             { addProject &&
-                <UploadProject onClose={() => setAddProject(false)} refresh={fetchAllProject} />
+                <UploadProject
+                    token={token}
+                    onClose={() => setAddProject(false)}
+                    refresh={fetchAllProject}
+                />
             }
             { editProject &&
                 <AdminEditProject
+                    token={token}
                     prevData={editData}
                     onClose={() => setEditProject(false)}
                     refresh={fetchAllProject}

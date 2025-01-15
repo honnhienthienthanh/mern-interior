@@ -6,6 +6,7 @@ import moment from 'moment'
 import AdminEditNews from '../../components/AdminEditNews'
 import AdminConfirmBox from '../../components/AdminConfirmBox'
 import { notification } from '../../store/NotificationContext'
+import { useOutletContext } from 'react-router-dom'
 
 const AllNews = () => {
     const [newsData, setNewsData] = useState([])
@@ -18,6 +19,8 @@ const AllNews = () => {
         newsImage: [],
         newsContent: ''
     })
+
+    const token = useOutletContext()
 
     async function getAllNews() {
         const allNews = await fetch(SothicAPI.news_get_all.url)
@@ -44,9 +47,9 @@ const AllNews = () => {
     async function deleteNews() {
         const delNews = fetch(SothicAPI.news_delete.url, {
             method: SothicAPI.news_delete.method,
-            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                token
             },
             body: JSON.stringify(newsId)
         }).then(res => res.json())
@@ -147,12 +150,14 @@ const AllNews = () => {
             </div>
             { addNew &&
                 <AdminUploadNews
+                    token={token}
                     onClose={() => setAddNews(false)}
                 />
             }
 
             { showEditNews &&
                 <AdminEditNews
+                    token={token}
                     prevData={editNews}
                     refresh={getAllNews}
                     onClose={() => setShowEditNews(false)}

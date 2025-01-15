@@ -7,7 +7,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const UploadProject = ({ onClose, refresh }) => {
+const UploadProject = ({ token, onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
         projectName: '',
         category: '',
@@ -77,9 +77,9 @@ const UploadProject = ({ onClose, refresh }) => {
 
         const fetchProject = await fetch(SothicAPI.project_upload.url, {
             method: SothicAPI.project_upload.method,
-            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                token
             },
             body: JSON.stringify(projectData)
         })

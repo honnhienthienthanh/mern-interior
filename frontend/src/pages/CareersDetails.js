@@ -12,7 +12,6 @@ const CareersDetails = () => {
     async function getCareers() {
         const getDetails = await fetch(SothicAPI.careers_details.url, {
             method: SothicAPI.careers_details.method,
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },

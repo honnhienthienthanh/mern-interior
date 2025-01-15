@@ -20,7 +20,6 @@ const ProjectDetails = () => {
     const getProjectDetails = async() => {
         const getData = await fetch(SothicAPI.project_details.url, {
             method: SothicAPI.project_details.method,
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },

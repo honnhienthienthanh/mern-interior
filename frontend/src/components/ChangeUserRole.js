@@ -4,7 +4,7 @@ import ROLE from '../common/Role'
 import SothicAPI from '../common/SothicApi'
 import { notification } from '../store/NotificationContext'
 
-const ChangeUserRole = ({ userId, name, email, role, refresh, onClose }) => {
+const ChangeUserRole = ({ token, userId, name, email, role, refresh, onClose }) => {
     const [userRole, setUserRole] = useState(role)
 
     const selectOnChange = (e) => {
@@ -14,9 +14,9 @@ const ChangeUserRole = ({ userId, name, email, role, refresh, onClose }) => {
     const updateUserRole = async(e) => {
         const fetchUpdate = await fetch(SothicAPI.update_user_role.url, {
             method: SothicAPI.update_user_role.method,
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
+                token
             },
             body: JSON.stringify({
                 userId: userId,

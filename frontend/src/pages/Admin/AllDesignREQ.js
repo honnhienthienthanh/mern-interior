@@ -4,6 +4,7 @@ import SothicAPI from '../../common/SothicApi'
 import { notification } from '../../store/NotificationContext'
 import '../../Assets/Css/designreq.css'
 import AdminConfirmBox from '../../components/AdminConfirmBox'
+import { useOutletContext } from 'react-router-dom'
 
 const AllDesignREQ = () => {
     const [reqData, setREQData] = useState([])
@@ -11,11 +12,13 @@ const AllDesignREQ = () => {
     const [reqId, setREQId] = useState({
         _id: ''
     })
+    
+    const token = useOutletContext()
 
     async function getAllREQ() {
         const allREQ = await fetch(SothicAPI.design_req_get.url, {
             method: SothicAPI.design_req_get.method,
-            credentials: 'include'
+            headers: { token }
         }).then(res => res.json())
 
         if(allREQ.success) {
@@ -34,11 +37,10 @@ const AllDesignREQ = () => {
     async function deleteDesignREQ() {
         const deleteREQ = await fetch(SothicAPI.design_req_delete.url, {
             method: SothicAPI.design_req_delete.method,
-            credentials: 'include',
             headers: {
-                'Content-Type': 'application/json'
+                token
             },
-            body: JSON.stringify(reqId)
+            body: reqId
         }).then(res => res.json())
 
         if(deleteREQ.success) {

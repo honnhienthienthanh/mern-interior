@@ -1,25 +1,27 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import SothicAPI from '../common/SothicApi'
+import { notification } from '../store/NotificationContext'
 
-const AdminAside = ({isAdmin, navigate }) => {
+const AdminAside = ({ token, isAdmin, navigate }) => {
     const handleLogout = async(e) => {
         e.preventDefault()
 
         const fetchLogout = await fetch(SothicAPI.logout.url, {
             method: SothicAPI.logout.method,
-            credentials: 'include'
+            headers: { token }
         })
 
         const responseData = await fetchLogout.json()
 
         if(responseData.success) {
-            console.log(responseData)
+            notification.success(responseData.message)
+            localStorage.setItem('token', '')
             navigate('/')
         }
 
         if(responseData.error) {
-            console.log(responseData)
+            notification.error(responseData.message)
         }
     }
     return (

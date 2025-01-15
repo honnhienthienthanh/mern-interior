@@ -12,7 +12,6 @@ const NewsDetails = () => {
     async function getNews() {
         const newsDetails = await fetch(SothicAPI.news_details.url, {
             method: SothicAPI.news_details.method,
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },
