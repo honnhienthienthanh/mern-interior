@@ -1,5 +1,5 @@
-const fs = require('fs')
-const newsModel = require('../models/newsModel')
+import fs from 'fs'
+import newsModel from '../models/newsModel.js'
 
 async function newsUpload(req, res) {
     try {
@@ -25,4 +25,4 @@ async function newsUpload(req, res) {
     }
 }
 
-module.exports = newsUpload
+export default newsUpload

@@ -1,4 +1,4 @@
-const projectModel = require("../models/projectModel")
+import projectModel from "../models/projectModel.js"
 
 
 async function projectByCategory(req, res) {
@@ -22,4 +22,4 @@ async function projectByCategory(req, res) {
     }
 }
 
-module.exports = projectByCategory
+export default projectByCategory

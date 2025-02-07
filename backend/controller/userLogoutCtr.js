@@ -18,4 +18,4 @@ async function userLogoutCtr(req, res) {
     }
 }
 
-module.exports = userLogoutCtr
+export default userLogoutCtr

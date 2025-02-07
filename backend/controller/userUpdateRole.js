@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel')
+import userModel from '../models/userModel.js'
 
 async function updateUserRole(req, res) {
     try {
@@ -32,4 +32,4 @@ async function updateUserRole(req, res) {
     }
 }
 
-module.exports = updateUserRole
+export default updateUserRole

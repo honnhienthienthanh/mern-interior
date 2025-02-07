@@ -92,7 +92,7 @@ const ProjectDetails = () => {
                             detailsData?.projectImages.map((image, index) => {
                                 return (
                                     <img
-                                        src={image}
+                                        src={image?.url}
                                         alt={`Sothic Studio - ${detailsData.projectName} ${index}`}
                                         key={detailsData.projectName + index}
                                     />
@@ -102,7 +102,7 @@ const ProjectDetails = () => {
                     </div>
                 </div>
             </div>
-            <div className='sothic__prj-details-related'>
+            {/* <div className='sothic__prj-details-related'>
                 <h3 className='text-center uppercase'>Những dự án liên quan</h3>
                 <div className='sothic__carousel'>
                     <div className='sothic__carousel-container'>
@@ -163,7 +163,7 @@ const ProjectDetails = () => {
                         <Link to={''} title=''>không gian mở</Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

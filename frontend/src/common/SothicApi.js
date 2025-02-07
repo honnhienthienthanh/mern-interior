@@ -30,7 +30,7 @@ const SothicAPI = {
         method: 'POST'
     },
     project_upload: {
-        url: `${API}/project-upload`,
+        url: `${API}/add-new-project`,
         method: 'POST'
     },
     all_project: {
@@ -54,7 +54,7 @@ const SothicAPI = {
         method: 'POST'
     },
     news_upload: {
-        url: `${API}/upload-news`,
+        url: `${API}/add-new-news`,
         method: 'POST'
     },
     news_get_all: {

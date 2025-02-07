@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel')
+import userModel from '../models/userModel.js'
 
 async function userDetailsCtr(req, res) {
     try {
@@ -19,4 +19,4 @@ async function userDetailsCtr(req, res) {
     }
 }
 
-module.exports = userDetailsCtr
+export default userDetailsCtr

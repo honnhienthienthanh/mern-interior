@@ -1,6 +1,6 @@
-const fs = require('fs')
-const careersModel = require('../models/careersModel')
-const userPermission = require('../helpers/permission')
+import fs from 'fs'
+import careersModel from '../models/careersModel.js'
+import userPermission from '../helpers/permission.js'
 
 async function careersEdit(req, res) {
     try {
@@ -47,4 +47,4 @@ async function careersEdit(req, res) {
     }
 }
 
-module.exports = careersEdit
+export default careersEdit

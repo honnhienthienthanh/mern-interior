@@ -1,4 +1,4 @@
-const contactModel = require('../models/contactModel')
+import contactModel from '../models/contactModel.js'
 
 async function contactReceive(req, res) {
     try {
@@ -53,4 +53,4 @@ async function contactReceive(req, res) {
     }
 }
 
-module.exports = contactReceive
+export default contactReceive

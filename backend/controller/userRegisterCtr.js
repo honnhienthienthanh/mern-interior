@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs')
-const userModel = require('../models/userModel')
+import bcrypt from 'bcryptjs'
+import userModel from '../models/userModel.js'
 
 async function userRegisterCtr(req, res) {
     try {
@@ -54,4 +54,4 @@ async function userRegisterCtr(req, res) {
     }
 }
 
-module.exports = userRegisterCtr
+export default userRegisterCtr

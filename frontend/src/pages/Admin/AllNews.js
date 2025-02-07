@@ -94,7 +94,7 @@ const AllNews = () => {
                                     <tr key={news?.newsTitle + index}>
                                         <td>
                                             <img
-                                                src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + news?.newsImage}
+                                                src={news?.newsImage[0]?.url}
                                                 alt={`Sothic Studio - ${news?.newsTitle}`}
                                             />
                                         </td>
@@ -152,6 +152,7 @@ const AllNews = () => {
                 <AdminUploadNews
                     token={token}
                     onClose={() => setAddNews(false)}
+                    refresh={getAllNews}
                 />
             }
 

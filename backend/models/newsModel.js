@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const newsSchema = new mongoose.Schema({
     newsTitle: String,
     newsSumary: String,
-    newsImage: String,
+    newsImage: Array,
     newsContent: String,
     newsLink: String,
     author: {
@@ -16,4 +16,4 @@ const newsSchema = new mongoose.Schema({
 
 const newsModel = mongoose.model('news', newsSchema)
 
-module.exports = newsModel
+export default newsModel

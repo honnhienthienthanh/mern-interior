@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema, model } = mongoose
+import mongoose from 'mongoose'
 
-const sliderSchema = new Schema({
+const sliderSchema = new mongoose.Schema({
     slideImage: {
         type: String,
         required: true
@@ -26,6 +25,6 @@ const sliderSchema = new Schema({
     timestamps: true
 })
 
-const sliderModel = model('slider', sliderSchema)
+const sliderModel = mongoose.model('slider', sliderSchema)
 
-module.exports = sliderModel
+export default sliderModel

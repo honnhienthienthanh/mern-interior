@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema, model } = mongoose
+import mongoose from 'mongoose'
 
-const contactSchema = new Schema({
+const contactSchema = new mongoose.Schema({
     contact1stName: {
         type: String,
         required: true
@@ -30,6 +29,6 @@ const contactSchema = new Schema({
     timestamps: true
 })
 
-const contactModel = model('contact', contactSchema)
+const contactModel = mongoose.model('contact', contactSchema)
 
-module.exports = contactModel
+export default contactModel

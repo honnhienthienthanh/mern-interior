@@ -1,5 +1,5 @@
-const projectUploadPermission = require("../helpers/permission")
-const projectModel = require("../models/projectModel")
+import projectUploadPermission from "../helpers/permission.js"
+import projectModel from "../models/projectModel.js"
 
 async function projectUploadCtr(req, res) {
     try {
@@ -26,4 +26,4 @@ async function projectUploadCtr(req, res) {
     }
 }
 
-module.exports = projectUploadCtr
+export default projectUploadCtr

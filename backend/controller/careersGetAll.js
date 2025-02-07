@@ -1,4 +1,4 @@
-const careersModel = require('../models/careersModel')
+import careersModel from '../models/careersModel.js'
 
 async function careersGetAll(req, res) {
     try {
@@ -25,4 +25,4 @@ async function careersGetAll(req, res) {
     }
 }
 
-module.exports = careersGetAll
+export default careersGetAll

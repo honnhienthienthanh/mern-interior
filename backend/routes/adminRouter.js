@@ -1,21 +1,24 @@
-const express = require('express')
-const authLogin = require('../middleware/authLogin')
-const getAllUsers = require('../controller/usersGetAll')
-const updateUserRole = require('../controller/userUpdateRole')
-const projectUploadCtr = require('../controller/projectUploadCtr')
-const projectUpdateCtr = require('../controller/projectUpdateCtr')
-const newsUpload = require('../controller/newsUpload')
-const careersUpload = require('../controller/careersUpload')
+import express from 'express'
+import authLogin from '../middleware/authLogin.js'
+import getAllUsers from '../controller/usersGetAll.js'
+import updateUserRole from '../controller/userUpdateRole.js'
+// import projectUploadCtr from '../controller/projectUploadCtr.js'
+import projectUpdateCtr from '../controller/projectUpdateCtr.js'
+import newsUpload from '../controller/newsUpload.js'
+import careersUpload from '../controller/careersUpload.js'
 
-const multer = require('multer')
-const isAdmin = require('../controller/isAdmin')
-const careersEdit = require('../controller/careersEdit')
-const newsUpdate = require('../controller/newsUpdate')
-const homeSlideUpload = require('../controller/homeSlideUpload')
-const designREQGet = require('../controller/designREQGet')
-const designREQDelete = require('../controller/designREQDelete')
-const projectDelete = require('../controller/projectDelete')
-const newsDelete = require('../controller/newsDelete')
+import multer from 'multer'
+import isAdmin from '../controller/isAdmin.js'
+import careersEdit from '../controller/careersEdit.js'
+import newsUpdate from '../controller/newsUpdate.js'
+import homeSlideUpload from '../controller/homeSlideUpload.js'
+import designREQGet from '../controller/designREQGet.js'
+import designREQDelete from '../controller/designREQDelete.js'
+import projectDelete from '../controller/projectDelete.js'
+import newsDelete from '../controller/newsDelete.js'
+import upload from '../middleware/multer.js'
+import { addProject } from '../controller/projectController.js'
+import { addNews } from '../controller/newsController.js'
 const uploadImage = multer({
     dest: 'uploads/',
     limits: 20 * 1024 * 1024
@@ -30,12 +33,14 @@ adminRouter.get('/get-all-users', authLogin, getAllUsers)
 adminRouter.post('/update-user-role', authLogin, updateUserRole)
 
 // Admin Project
-adminRouter.post('/project-upload', authLogin, projectUploadCtr)
+adminRouter.post('/add-new-project', authLogin, upload.array('projectImages'), addProject)
+// adminRouter.post('/project-upload', authLogin, projectUploadCtr)
 adminRouter.post('/project-update', authLogin, projectUpdateCtr)
 adminRouter.post('/delete-project', authLogin, projectDelete)
 
 // News
-adminRouter.post('/upload-news', authLogin, uploadImage.single('newsImage'), newsUpload)
+adminRouter.post('/add-new-news', authLogin, upload.array('newsImage'), addNews)
+// adminRouter.post('/upload-news', authLogin, uploadImage.single('newsImage'), newsUpload)
 adminRouter.post('/update-news', authLogin, uploadImage.single('newsImage'), newsUpdate)
 adminRouter.post('/delete-news', authLogin, newsDelete)
 
@@ -50,4 +55,4 @@ adminRouter.post('/upload-slide', uploadImage.single('slideImage'), homeSlideUpl
 adminRouter.get('/get-design-req', authLogin, designREQGet)
 adminRouter.post('/delete-design-req', authLogin, designREQDelete)
 
-module.exports = adminRouter
+export default adminRouter

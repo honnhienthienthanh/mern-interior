@@ -1,4 +1,4 @@
-const userModel = require('../models/userModel')
+import userModel from '../models/userModel.js'
 
 async function userPermission(userId) {
     const user = await userModel.findById(userId)
@@ -10,4 +10,4 @@ async function userPermission(userId) {
     return true
 }
 
-module.exports = userPermission
+export default userPermission

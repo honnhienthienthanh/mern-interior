@@ -1,22 +1,22 @@
-const express = require('express')
+import express from 'express'
 
 const router = express.Router()
 
-const userRegisterCtr = require('../controller/userRegisterCtr')
-const userLoginCtr = require('../controller/userLoginCtr')
-const authLogin = require('../middleware/authLogin')
-const userDetailsCtr = require('../controller/userDetailsCtr')
-const userLogoutCtr = require('../controller/userLogoutCtr')
-const projectGetAll = require('../controller/projectGetAll')
-const projectByCategory = require('../controller/projectByCategory')
-const projectDetails = require('../controller/projectDetails')
-const newsGetAll = require('../controller/newsGetAll')
-const newsDetails = require('../controller/newsDetails')
-const careersGetAll = require('../controller/careersGetAll')
-const careersDetails = require('../controller/careersDetails')
-const contactReceive = require('../controller/contactReceive')
-const designREQ = require('../controller/designREQ')
-const homeGetSlide = require('../controller/homeGetSlide')
+import userRegisterCtr from '../controller/userRegisterCtr.js'
+import userLoginCtr from '../controller/userLoginCtr.js'
+import authLogin from '../middleware/authLogin.js'
+import userDetailsCtr from '../controller/userDetailsCtr.js'
+import userLogoutCtr from '../controller/userLogoutCtr.js'
+import projectGetAll from '../controller/projectGetAll.js'
+import projectByCategory from '../controller/projectByCategory.js'
+import projectDetails from '../controller/projectDetails.js'
+import newsGetAll from '../controller/newsGetAll.js'
+import newsDetails from '../controller/newsDetails.js'
+import careersGetAll from '../controller/careersGetAll.js'
+import careersDetails from '../controller/careersDetails.js'
+import contactReceive from '../controller/contactReceive.js'
+import designREQ from '../controller/designREQ.js'
+import homeGetSlide from '../controller/homeGetSlide.js'
 
 // User
 router.post('/register', userRegisterCtr)
@@ -46,4 +46,4 @@ router.post('/design-req', designREQ)
 // Home
 router.get('/get-slide', homeGetSlide)
 
-module.exports = router
+export default router

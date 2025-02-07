@@ -1,4 +1,4 @@
-const newsModel = require('../models/newsModel')
+import newsModel from '../models/newsModel.js'
 
 async function newsDelete(req, res) {
     try {
@@ -24,4 +24,4 @@ async function newsDelete(req, res) {
     }
 }
 
-module.exports = newsDelete
+export default newsDelete

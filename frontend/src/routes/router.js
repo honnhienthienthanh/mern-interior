@@ -9,7 +9,6 @@ import News from '../pages/News'
 import Careers from '../pages/Careers'
 import Contact from '../pages/Contact'
 import Register from '../pages/Register'
-import Login from '../pages/Login'
 import HomeSlider from '../pages/Admin/HomeSlider'
 import NewsDetails from '../pages/NewsDetails'
 import Oops from '../pages/Oops'
@@ -72,10 +71,6 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register />
-            },
-            {
-                path: 'login',
-                element: <Login />
             }
         ]
     },

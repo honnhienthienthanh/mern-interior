@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import '../Assets/Css/uploadproject.css'
 import projectCategory from '../helpers/projectCategory'
-import uploadImage from '../helpers/uploadImage'
 import DisplayImage from './DisplayImage'
 import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
+import imageTobase64 from '../helpers/imageTobase64'
 
 const UploadProject = ({ token, onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
@@ -15,9 +15,11 @@ const UploadProject = ({ token, onClose, refresh }) => {
         floorArea: '',
         numberOfFloors: '',
         projectAddress: '',
-        projectImages: [],
         projectUri: ''
     })
+
+    const [projectImages, setProjectImages] = useState([])
+    const [images, setImages] = useState([])
 
     const [showImage, setShowImage] = useState(false)
     const [fullScreen, setFullScreen] = useState('')
@@ -42,58 +44,62 @@ const UploadProject = ({ token, onClose, refresh }) => {
         }
     }
 
-    const handleUploadImage = async(e) => {
-        const file = e.target.files[0]
-        console.log('File', file)
+    function handleUploadImage(e) {
+        setProjectImages([...e.target.files])
+        const allImage = [...e.target.files]
 
-        const uploadImageCloudinary = await uploadImage(file)
-
-        setProjectData(prev => {
-            return {
-                ...prev,
-                projectImages: [ ...prev.projectImages, uploadImageCloudinary.url ]
-            }
+        allImage.forEach(async(image) => {
+            const newImage = await imageTobase64(image)
+            setImages(prev => [...prev, newImage])
         })
-
-        console.log('Upload Image', uploadImageCloudinary)
     }
 
     const handleDeleteImage = async(index) => {
-        const newProjectImage = [...projectData.projectImages]
+        const newProjectImage = [...projectImages]
         newProjectImage.splice(index, 1)
 
-        setProjectData(prev => {
-            return {
-                ...prev,
-                projectImages: [...newProjectImage]
-            }
-        })
+        setProjectImages([...newProjectImage])
+
+        const newImages = [...images]
+        newImages.splice(index, 1)
+
+        setImages([...newImages])
     }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
 
-        console.log('Uri - ', projectData.projectUri)
+        const data = new FormData()
+
+        data.append('projectName', projectData?.projectName)
+        data.append('category', projectData?.category)
+        data.append('customer', projectData?.customer)
+        data.append('floorArea', projectData?.floorArea)
+        data.append('numberOfFloors', projectData?.numberOfFloors)
+        data.append('projectAddress', projectData?.projectAddress)
+        data.append('projectUri', projectData?.projectUri)
+
+        projectImages.forEach(image => {
+            data.append('projectImages', image)
+        })
 
         const fetchProject = await fetch(SothicAPI.project_upload.url, {
             method: SothicAPI.project_upload.method,
-            headers: {
-                'Content-Type': 'application/json',
-                token
-            },
-            body: JSON.stringify(projectData)
-        })
+            headers: { token },
+            body: data
+        }).then(res => res.json())
 
-        const responseData = await fetchProject.json()
-
-        if(responseData.success) {
-            notification.success('Thêm mới dự án thành công!')
+        if(fetchProject.success) {
+            notification.success(fetchProject.message)
+            setProjectImages([])
+            setImages([])
             refresh()
             onClose()
         }
 
-        if(responseData.error) {
-            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
+        if(fetchProject.error) {
+            notification.error(fetchProject.message)
+            onClose()
         }
     }
     return (
@@ -204,8 +210,8 @@ const UploadProject = ({ token, onClose, refresh }) => {
                         />
                     </label>
                     <div className='sothic__list-image flex items-center'>
-                        { projectData?.projectImages[0] ? (
-                            projectData.projectImages.map((image, index) => {
+                        { images.length > 1 ? (
+                            images.map((image, index) => {
                                 return (
                                     <div className='sothic__list-image-item' key={index + 5}>
                                         <img
@@ -228,7 +234,28 @@ const UploadProject = ({ token, onClose, refresh }) => {
                                 )
                             })
                         ) : (
-                            <p>* Vui lòng tải lên ảnh của dự án</p>
+                            images.length > 0 ? (
+                                <div className='sothic__list-image-item'>
+                                    <img
+                                        src={images}
+                                        width={80}
+                                        height={80}
+                                        alt=''
+                                        onClick={() => {
+                                            setFullScreen(images)
+                                            setShowImage(true)
+                                        }}
+                                    />
+                                    <span
+                                        className="material-symbols-outlined"
+                                        onClick={() => handleDeleteImage(0)}
+                                    >
+                                        delete
+                                    </span>
+                                </div>
+                            ) : (
+                                <p>* Vui lòng tải lên ảnh của dự án</p>
+                            )
                         )}
                     </div>
                     <button className='sothic__upload-submit'>Thêm dự án</button>

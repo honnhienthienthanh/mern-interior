@@ -1,5 +1,5 @@
-const fs = require('fs')
-const careersModel = require('../models/careersModel')
+import fs from 'fs'
+import careersModel from '../models/careersModel.js'
 
 async function careersUpload(req, res) {
     try {
@@ -26,4 +26,4 @@ async function careersUpload(req, res) {
     }
 }
 
-module.exports = careersUpload
+export default careersUpload

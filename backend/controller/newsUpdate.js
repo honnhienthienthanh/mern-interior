@@ -1,6 +1,6 @@
-const fs = require('fs')
-const newsModel = require('../models/newsModel')
-const userPermission = require('../helpers/permission')
+import fs from 'fs'
+import newsModel from '../models/newsModel.js'
+import userPermission from '../helpers/permission.js'
 
 async function newsUpdate(req, res) {
     try {
@@ -47,4 +47,4 @@ async function newsUpdate(req, res) {
     }
 }
 
-module.exports = newsUpdate
+export default newsUpdate

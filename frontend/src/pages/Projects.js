@@ -24,7 +24,7 @@ const Projects = () => {
                 { project.map((proj, index) => {
                     return (
                         <ProjectItem
-                            image={proj?.projectImages[0]}
+                            image={proj?.projectImages[0]?.url}
                             name={proj?.projectName}
                             category={proj?.category}
                             uri={proj?.projectUri}

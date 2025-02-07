@@ -1,5 +1,5 @@
-const fs = require('fs')
-const sliderModel = require('../models/sliderModel')
+import fs from 'fs'
+import sliderModel from '../models/sliderModel.js'
 
 async function homeSlideUpload(req, res) {
     try {
@@ -31,4 +31,4 @@ async function homeSlideUpload(req, res) {
     }
 }
 
-module.exports = homeSlideUpload
+export default homeSlideUpload

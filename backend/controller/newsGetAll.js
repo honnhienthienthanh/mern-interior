@@ -1,4 +1,4 @@
-const newsModel = require("../models/newsModel")
+import newsModel from "../models/newsModel.js"
 
 
 async function newsGetAll(req, res) {
@@ -30,4 +30,4 @@ async function newsGetAll(req, res) {
     }
 }
 
-module.exports = newsGetAll
+export default newsGetAll

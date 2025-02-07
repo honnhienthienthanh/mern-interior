@@ -49,9 +49,9 @@ const AllProjects = () => {
     async function deleteProject() {
         const delProj = await fetch(SothicAPI.project_delete.url, {
             method: SothicAPI.project_delete.method,
-            headers: { token },
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                token
             },
             body: JSON.stringify(projId)
         }).then(res => res.json())
@@ -82,13 +82,13 @@ const AllProjects = () => {
                 { allProjects.length > 0 ? (
                     allProjects.map((proj, index) => {
                         return (
-                            <div className='sothic__all-project-item' key={proj.projectName + index}>
+                            <div className='sothic__all-project-item' key={proj?.projectName + index}>
                                 <img
-                                    src={ proj?.projectImages[0] }
-                                    alt={ proj.projectName }
+                                    src={ proj?.projectImages[0].url }
+                                    alt={ proj?.projectName }
                                 />
-                                <h2>{ proj.projectName }</h2>
-                                <h3>{ proj.category }</h3>
+                                <h2>{ proj?.projectName }</h2>
+                                <h3>{ proj?.category }</h3>
                                 <div className='sothic__all-project-action flex items-center'>
                                     <button
                                         className='flex items-center justify-center'

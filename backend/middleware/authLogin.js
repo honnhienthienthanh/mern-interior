@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken'
 
 async function authLogin(req, res, next) {
     try {
@@ -29,4 +29,4 @@ async function authLogin(req, res, next) {
     }
 }
 
-module.exports = authLogin
+export default authLogin

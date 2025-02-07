@@ -1,4 +1,4 @@
-const designModel = require('../models/designModel')
+import designModel from '../models/designModel.js'
 
 async function designREQDelete(req, res) {
     try {
@@ -24,4 +24,4 @@ async function designREQDelete(req, res) {
     }
 }
 
-module.exports = designREQDelete
+export default designREQDelete

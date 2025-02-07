@@ -4,7 +4,7 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 
-const AdminUploadNews = ({ token, onClose }) => {
+const AdminUploadNews = ({ token, onClose, refresh }) => {
     const [newsData, setNewsData] = useState({
         newsTitle: '',
         newsSumary: '',
@@ -36,17 +36,20 @@ const AdminUploadNews = ({ token, onClose }) => {
             method: SothicAPI.news_upload.method,
             headers: { token },
             body: news
-        })
+        }).then(res => res.json())
 
-        if(postNews.ok) {
-            notification.success('Thêm tin tức mới thành công!')
+        if(postNews.success) {
+            notification.success(postNews.message)
+            refresh()
             onClose()
         }
 
-        if(!postNews.ok) {
-            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
+        if(postNews.error) {
+            notification.error(postNews.message)
         }
     }
+
+    console.log(newsData.newsImage)
     return (
         <div className='sothic__upload flex items-center justify-center'>
             <button className='sothic__popup-exit' onClick={onClose}>

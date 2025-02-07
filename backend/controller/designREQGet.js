@@ -1,4 +1,4 @@
-const designModel = require('../models/designModel')
+import designModel from '../models/designModel.js'
 
 async function designREQGet(req, res) {
     try {
@@ -19,4 +19,4 @@ async function designREQGet(req, res) {
     }
 }
 
-module.exports = designREQGet
+export default designREQGet

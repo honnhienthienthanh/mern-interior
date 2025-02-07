@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema, model } = mongoose
+import mongoose from 'mongoose'
 
-const designSchema = new Schema({
+const designSchema = new mongoose.Schema({
     customerName: {
         type: String,
         required: true
@@ -38,6 +37,6 @@ const designSchema = new Schema({
     timestamps: true
 })
 
-const designModel = model('design-req', designSchema)
+const designModel = mongoose.model('design-req', designSchema)
 
-module.exports = designModel
+export default designModel

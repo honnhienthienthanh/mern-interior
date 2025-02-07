@@ -1,5 +1,5 @@
-const userPermission = require('../helpers/permission')
-const projectModel = require('../models/projectModel')
+import userPermission from '../helpers/permission.js'
+import projectModel from '../models/projectModel.js'
 
 async function projectUpdateCtr(req, res) {
     try {
@@ -26,4 +26,4 @@ async function projectUpdateCtr(req, res) {
     }
 }
 
-module.exports = projectUpdateCtr
+export default projectUpdateCtr

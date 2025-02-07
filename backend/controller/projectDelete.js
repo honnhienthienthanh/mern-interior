@@ -1,4 +1,4 @@
-const projectModel = require('../models/projectModel')
+import projectModel from '../models/projectModel.js'
 
 async function projectDelete(req, res) {
     try {
@@ -24,4 +24,4 @@ async function projectDelete(req, res) {
     }
 }
 
-module.exports = projectDelete
+export default projectDelete

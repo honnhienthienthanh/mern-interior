@@ -1,4 +1,4 @@
-const sliderModel = require('../models/sliderModel')
+import sliderModel from '../models/sliderModel.js'
 
 async function homeGetSlide(req, res) {
     try {
@@ -27,4 +27,4 @@ async function homeGetSlide(req, res) {
     }
 }
 
-module.exports = homeGetSlide
+export default homeGetSlide

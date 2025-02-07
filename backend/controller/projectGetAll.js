@@ -1,4 +1,4 @@
-const projectModel = require("../models/projectModel")
+import projectModel from "../models/projectModel.js"
 
 
 async function projectGetAll(req, res) {
@@ -20,4 +20,4 @@ async function projectGetAll(req, res) {
     }
 }
 
-module.exports = projectGetAll
+export default projectGetAll

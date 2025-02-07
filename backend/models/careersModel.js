@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const careersSchema = new mongoose.Schema({
     careersTitle: String,
@@ -16,4 +16,4 @@ const careersSchema = new mongoose.Schema({
 
 const careersModel = mongoose.model('careers', careersSchema)
 
-module.exports = careersModel
+export default careersModel
