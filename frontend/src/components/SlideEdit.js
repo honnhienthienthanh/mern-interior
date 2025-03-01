@@ -3,14 +3,16 @@ import STCategory from '../common/STCategory'
 import SothicAPI from '../common/SothicApi'
 import { notification } from '../store/NotificationContext'
 
-const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
+const SlideEdit = ({ token, showStatus, prevData, STClose, STRefresh }) => {
     const [show, setShow] = useState(showStatus)
     const [slideData, setSlideData] = useState({
-        slideAuthor: '',
-        slideTitle: '',
-        slideCategory: '',
-        slideImage: [],
-        slideDescription: ''
+        _id: prevData?._id,
+        slideAuthor: prevData?.slideAuthor,
+        slideTitle: prevData?.slideTitle,
+        slideCategory: prevData?.slideCategory,
+        slideImage: prevData?.slideImage || [],
+        slideDescription: prevData?.slideDescription,
+        replaceImage: []
     })
 
     function inputData(e) {
@@ -33,18 +35,25 @@ const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
         return () => clearTimeout(timeOut)
     }
 
-    async function handleAddSlide(e) {
+    async function handleEditSlide(e) {
         e.preventDefault()
         const newSlide = new FormData()
 
+        newSlide.set('_id', slideData._id)
         newSlide.set('slideAuthor', slideData.slideAuthor)
         newSlide.set('slideTitle', slideData.slideTitle)
         newSlide.set('slideCategory', slideData.slideCategory)
-        newSlide.set('slideImage', slideData.slideImage[0])
         newSlide.set('slideDescription', slideData.slideDescription)
+        newSlide.set('slideImage', JSON.stringify(slideData.slideImage))
 
-        const addSlide = await fetch(SothicAPI.home_slide_upload.url, {
-            method: SothicAPI.home_slide_upload.method,
+        if(typeof slideData.slideImage === 'object') {
+            newSlide.set('replaceImage', slideData.replaceImage[0])
+        } else {
+            newSlide.set('replaceImage', slideData.replaceImage)
+        }
+
+        const addSlide = await fetch(SothicAPI.home_update.url, {
+            method: SothicAPI.home_update.method,
             headers: { token },
             body: newSlide
         }).then(res => res.json())
@@ -78,9 +87,9 @@ const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
             <div className='sothic__background' onClick={onClose}></div>
             <form
                 className='sothic__admin-form sothic__popup-admin-box flex flex-col'
-                onSubmit={handleAddSlide}
+                onSubmit={handleEditSlide}
             >
-                <h1>Thêm Slide mới</h1>
+                <h1>Cập nhật Slide</h1>
                 <label htmlFor='slideAuthor'>Tác giả</label>
                 <input
                     type='text'
@@ -137,11 +146,10 @@ const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
                         type='file'
                         name='slideImage'
                         id='slideImage'
-                        required
                         onChange={e => setSlideData(prev => {
                             return {
                                 ...prev,
-                                slideImage: e.target.files
+                                replaceImage: e.target.files
                             }
                         })}
                     />
@@ -155,10 +163,10 @@ const SlideUpload = ({ token, showStatus, STClose, STRefresh}) => {
                     value={slideData.slideDescription}
                     onChange={inputData}
                 ></textarea>
-                <button className='admin-submit'>Thêm Slide</button>
+                <button className='admin-submit'>Cập nhật</button>
             </form>
         </div>
     )
 }
 
-export default SlideUpload
+export default SlideEdit

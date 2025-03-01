@@ -3,10 +3,25 @@ import '../../Assets/Css/homeslider.css'
 import SothicAPI from '../../common/SothicApi'
 import { notification } from '../../store/NotificationContext'
 import SlideUpload from '../../components/SlideUpload'
+import SlideEdit from '../../components/SlideEdit'
+import { useOutletContext } from 'react-router-dom'
+import AdminConfirmBox from '../../components/AdminConfirmBox'
 
-const HomeSlider = ({ token }) => {
+const HomeSlider = () => {
     const [slideData, setSlideData] = useState([])
     const [showAddSlide, setShowAddSlide] = useState(false)
+
+    const [showEdit, setShowEdit] = useState(false)
+    const [editData, setEditData] = useState({
+        _id: '',
+        slideAuthor: '',
+        slideTitle: '',
+        slideCategory: '',
+        slideImage: [],
+        slideDescription: ''
+    })
+
+    const token = useOutletContext()
 
     async function getAllSlide() {
         const allSlide = await fetch(SothicAPI.home_get_slide.url, {
@@ -25,6 +40,31 @@ const HomeSlider = ({ token }) => {
     useEffect(() => {
         getAllSlide()
     }, [])
+
+    const [delStatus, setDelStatus] = useState(false)
+    const [slideId, setSlideId] = useState({
+        _id: ''
+    })
+
+    async function deleteSlide() {
+        const delSlide = await fetch(SothicAPI.home_delete.url, {
+            method: SothicAPI.home_delete.method,
+            headers: {
+                'Content-Type': 'application/json',
+                token
+            },
+            body: JSON.stringify(slideId)
+        }).then(res => res.json())
+
+        if(delSlide.success) {
+            notification.success(delSlide.message)
+            getAllSlide()
+        }
+
+        if(delSlide.error) {
+            notification.error(delSlide.message)
+        }
+    }
     return (
         <div className='sothic__all-news'>
             <div className='sothic__all-news-header flex items-center justify-between'>
@@ -44,7 +84,7 @@ const HomeSlider = ({ token }) => {
                     return (
                         <div className='sothic__admin-home-item flex items-center' key={slide?.slideTitle + index}>
                             <div className='sothic__admin-home-item-img'>
-                                <img src={process.env.REACT_APP_BACKEND_URI + '/' + slide?.slideImage} width={250} alt='' />
+                                <img src={slide?.slideImage[0].url} width={250} alt='' />
                             </div>
                             <div className='sothic__admin-home-item-content'>
                                 <h5>{ slide?.slideAuthor }</h5>
@@ -56,6 +96,10 @@ const HomeSlider = ({ token }) => {
                                 <button
                                     type='button'
                                     className='user-edit'
+                                    onClick={() => {
+                                        setEditData(slide)
+                                        setShowEdit(true)
+                                    }}
                                 >
                                     <span className="material-symbols-outlined">
                                         edit
@@ -64,6 +108,10 @@ const HomeSlider = ({ token }) => {
                                 <button
                                     type='button'
                                     className='user-delete'
+                                    onClick={() => {
+                                        setSlideId({ _id: slide?._id })
+                                        setDelStatus(true)
+                                    }}
                                 >
                                     <span className="material-symbols-outlined">
                                         delete
@@ -88,6 +136,26 @@ const HomeSlider = ({ token }) => {
                     showStatus={showAddSlide}
                     STClose={() => setShowAddSlide(false)}
                     STRefresh={getAllSlide}
+                />
+            }
+
+            { showEdit &&
+                <SlideEdit
+                    token={token}
+                    showStatus={showEdit}
+                    prevData={editData}
+                    STClose={() => setShowEdit(false)}
+                    STRefresh={getAllSlide}
+                />
+            }
+
+            { delStatus &&
+                <AdminConfirmBox
+                    showStatus={delStatus}
+                    message={'Bạn chắc chắn muốn xóa slide này chứ?'}
+                    userAction={deleteSlide}
+                    STClose={() => setDelStatus(false)}
+                    refresh={getAllSlide}
                 />
             }
         </div>

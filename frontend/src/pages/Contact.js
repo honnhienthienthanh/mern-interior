@@ -1,11 +1,53 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../Assets/Css/contact.css'
 import iconPhone from '../Assets/Icons/icon-phone.png'
 import iconEmail from '../Assets/Icons/icon-email.png'
 import iconLocation from '../Assets/Icons/icon-location.png'
 import { Link } from 'react-router-dom'
+import SothicAPI from '../common/SothicApi'
+import { notification } from '../store/NotificationContext'
 
 const Contact = () => {
+    const [contactData, setContactData] = useState({
+        contactfullName: '',
+        contactEmail: '',
+        contactPhone: '',
+        // contactIssue: '',
+        contactMessage: ''
+    })
+
+    function inputData(e) {
+        const {name, value} = e.target
+
+        setContactData(prev => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+    }
+
+    async function handleContactSubmit(e) {
+        e.preventDefault()
+
+        const submit = await fetch(SothicAPI.contact_add.url, {
+            method: SothicAPI.contact_add.method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contactData)
+        }).then(res => res.json())
+
+        if(submit.success) {
+            notification.success(submit.message)
+        }
+
+        if(submit.error) {
+            notification.error(submit.message)
+        }
+    }
+
+    console.log(contactData)
     return (
         <div className='sothic__contact flex flex-col items-center justify-center'>
             <div className='sothic__contact-title'>
@@ -35,7 +77,7 @@ const Contact = () => {
                                 alt='Sothic Studio Phone Icon'
                             />
                             <span>
-                                +1012 3456 789
+                                082 624 2299
                             </span>
                         </li>
                         <li className='flex items-center'>
@@ -46,7 +88,7 @@ const Contact = () => {
                                 alt='Sothic Studio Email Icon'
                             />
                             <span>
-                                demo@gmail.com
+                                sothicjsc.vn@gmail.com
                             </span>
                         </li>
                         <li className='flex items-start'>
@@ -57,7 +99,7 @@ const Contact = () => {
                                 alt='Sothic Studio Location Icon'
                             />
                             <span>
-                                132 Dartmouth Street Boston, Massachusetts 02156 United States
+                                The Terra An Hưng, La Khê, Hà Đông, Hanoi, Vietnam
                             </span>
                         </li>
                     </ul>
@@ -66,20 +108,22 @@ const Contact = () => {
                         <Link id='instagram' to={''} title=''>&nbsp;</Link>
                     </div>
                 </div>
-                <form className='sothic__contact-form flex'>
+                <form className='sothic__contact-form flex' onSubmit={handleContactSubmit}>
                     <div className='sothic__contact-textbox flex flex-col'>
                         <input
-                            id='firstName'
+                            id='contactfullName'
                             type='text'
-                            name='firstName'
+                            name='contactfullName'
                             placeholder='Jonh'
                             required
+                            value={contactData.contactfullName}
+                            onChange={inputData}
                         />
-                        <label htmlFor='firstName'>
-                            Họ và đệm
+                        <label htmlFor='contactfullName'>
+                            Họ tên
                         </label>
                     </div>
-                    <div className='sothic__contact-textbox flex flex-col'>
+                    {/* <div className='sothic__contact-textbox flex flex-col'>
                         <input
                             id='lastName'
                             type='text'
@@ -90,65 +134,71 @@ const Contact = () => {
                         <label htmlFor='lastName'>
                             Tên
                         </label>
-                    </div>
+                    </div> */}
                     <div className='sothic__contact-textbox flex flex-col'>
                         <input
-                            id='email'
-                            type='email'
-                            name='email'
+                            id='contactEmail'
+                            type='contactEmail'
+                            name='contactEmail'
                             placeholder='exmaple@example.com'
                             required
+                            value={contactData.contactEmail}
+                            onChange={inputData}
                         />
-                        <label htmlFor='email'>
+                        <label htmlFor='contactEmail'>
                             Email
                         </label>
                     </div>
                     <div className='sothic__contact-textbox flex flex-col'>
                         <input
-                            id='phoneNumber'
-                            type='number'
-                            name='phoneNumber'
+                            id='contactPhone'
+                            type='contactPhone'
+                            name='contactPhone'
                             placeholder='+1 012 3456 789'
                             required
+                            value={contactData.contactPhone}
+                            onChange={inputData}
                         />
-                        <label htmlFor='phoneNumber'>
+                        <label htmlFor='contactPhone'>
                             Số điện thoại
                         </label>
                     </div>
-                    <div className='sothic__contact-subject'>
+                    {/* <div className='sothic__contact-subject'>
                         <label className='sothic__contact-subject-title'>Vấn đề</label>
                         <div className='sothic__contact-radio-box flex items-center'>
                             <label className='sothic__radio'>
                                 General Inquiry
-                                <input type='radio' name='radio' />
+                                <input type='radio' name='contactIssue' />
                                 <span className='checkmark'></span>
                             </label>
                             <label className='sothic__radio'>
                                 General Inquiry
-                                <input type='radio' name='radio' />
+                                <input type='radio' name='contactIssue' />
                                 <span className='checkmark'></span>
                             </label>
                             <label className='sothic__radio'>
                                 General Inquiry
-                                <input type='radio' name='radio' />
+                                <input type='radio' name='contactIssue' />
                                 <span className='checkmark'></span>
                             </label>
                             <label className='sothic__radio'>
                                 General Inquiry
-                                <input type='radio' name='radio' />
+                                <input type='radio' name='contactIssue' />
                                 <span className='checkmark'></span>
                             </label>
                         </div>
-                    </div>
+                    </div> */}
                     <div className='sothic__contact-textbox message flex flex-col'>
                         <input
-                            id='message'
+                            id='contactMessage'
                             type='text'
-                            name='message'
+                            name='contactMessage'
                             placeholder='Vui lòng nhập lời nhắn của bạn..'
                             required
+                            value={contactData.contactMessage}
+                            onChange={inputData}
                         />
-                        <label htmlFor='message'>
+                        <label htmlFor='contactMessage'>
                             Lời nhắn
                         </label>
                     </div>

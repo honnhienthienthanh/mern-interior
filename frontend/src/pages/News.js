@@ -43,7 +43,7 @@ const News = () => {
                                 key={news.newsTitle + index}
                             >
                                 <img
-                                    src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + news.newsImage}
+                                    src={news.newsImage[0].url}
                                     alt={`Sothic Studio - ${ news.newsTitle }`}
                                 />
                                 <h3 className='uppercase'>{ news.newsTitle }</h3>

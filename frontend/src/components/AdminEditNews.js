@@ -10,7 +10,8 @@ const AdminEditNews = ({ token, prevData, onClose, refresh }) => {
         newsTitle: prevData?.newsTitle,
         newsSumary: prevData?.newsSumary,
         newsImage: prevData?.newsImage || [],
-        newsContent: prevData?.newsContent
+        newsContent: prevData?.newsContent,
+        replaceImage: []
     })
 
     const inputNewsData = (e) => {
@@ -31,11 +32,12 @@ const AdminEditNews = ({ token, prevData, onClose, refresh }) => {
         news.set('newsTitle', newsData.newsTitle)
         news.set('newsSumary', newsData.newsSumary)
         news.set('newsContent', newsData.newsContent)
+        news.set('newsImage', JSON.stringify(newsData.newsImage))
 
-        if(typeof newsData.newsImage === 'object') {
-            news.set('newsImage', newsData.newsImage[0])
+        if(typeof newsData.replaceImage === 'object') {
+            news.set('replaceImage', newsData.replaceImage[0])
         } else {
-            news.set('newsImage', newsData.newsImage)
+            news.set('replaceImage', newsData.replaceImage)
         }
         
         news.set('newsLink', createUrl(newsData.newsTitle))
@@ -47,13 +49,13 @@ const AdminEditNews = ({ token, prevData, onClose, refresh }) => {
         }).then(res => res.json())
 
         if(postNews.success) {
-            notification.success('Sửa tin tức thành công!')
+            notification.success(postNews.message)
             refresh()
             onClose()
         }
 
         if(postNews.error) {
-            notification.error('Sửa tin tức không thành công. Vui lòng kiểm tra lại!')
+            notification.error(postNews.message)
             onClose()
         }
     }
@@ -100,7 +102,7 @@ const AdminEditNews = ({ token, prevData, onClose, refresh }) => {
                         onChange={e => setNewsData(prev => {
                             return {
                                 ...prev,
-                                newsImage: e.target.files
+                                replaceImage: e.target.files
                             }
                         })}
                         className='bottom-10'

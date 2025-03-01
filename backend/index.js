@@ -21,7 +21,7 @@ app.use('/api', adminRouter)
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-app.use('/uploads', express.static(__dirname + '/uploads'))
+// app.use('/uploads', express.static(__dirname + '/uploads'))
 
 const PORT = process.env.PORT || 8080
 

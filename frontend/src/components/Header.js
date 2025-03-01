@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../Assets/Css/header.css'
 import { Link, NavLink } from 'react-router-dom'
+import LiveSearch from './LiveSearch'
 
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false)
@@ -55,14 +56,15 @@ const Header = () => {
                         LIÊN HỆ
                     </NavLink>
                 </nav>
-                <div className='sothic__header-search flex items-center justify-center xs:hidden'>
+                <LiveSearch />
+                {/* <div className='sothic__header-search flex items-center justify-center xs:hidden'>
                     <input
                         type='text'
                         name='sothic-search'
                         placeholder='Search here...'
                         className='sothic__search-box'
                     />
-                </div>
+                </div> */}
                 <div
                     className={ mobileMenu
                         ? 'sothic__header-mobile-nav hidden md:block menu-active'

@@ -58,6 +58,7 @@ const AllProjects = () => {
 
         if(delProj.success) {
             notification.success(delProj.message)
+            fetchAllProject()
         }
 
         if(delProj.error) {
@@ -84,7 +85,7 @@ const AllProjects = () => {
                         return (
                             <div className='sothic__all-project-item' key={proj?.projectName + index}>
                                 <img
-                                    src={ proj?.projectImages[0].url }
+                                    src={ proj?.projectImages[0]?.url }
                                     alt={ proj?.projectName }
                                 />
                                 <h2>{ proj?.projectName }</h2>

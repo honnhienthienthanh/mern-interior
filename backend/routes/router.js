@@ -7,16 +7,12 @@ import userLoginCtr from '../controller/userLoginCtr.js'
 import authLogin from '../middleware/authLogin.js'
 import userDetailsCtr from '../controller/userDetailsCtr.js'
 import userLogoutCtr from '../controller/userLogoutCtr.js'
-import projectGetAll from '../controller/projectGetAll.js'
-import projectByCategory from '../controller/projectByCategory.js'
-import projectDetails from '../controller/projectDetails.js'
-import newsGetAll from '../controller/newsGetAll.js'
-import newsDetails from '../controller/newsDetails.js'
-import careersGetAll from '../controller/careersGetAll.js'
-import careersDetails from '../controller/careersDetails.js'
-import contactReceive from '../controller/contactReceive.js'
 import designREQ from '../controller/designREQ.js'
-import homeGetSlide from '../controller/homeGetSlide.js'
+import { listProjects, oneProject } from '../controller/projectController.js'
+import { listNews, oneNews } from '../controller/newsController.js'
+import { listCareers, oneCareer } from '../controller/careersControler.js'
+import { listSlide } from '../controller/homeController.js'
+import { addContact, subscribeEmail } from '../controller/contactController.js'
 
 // User
 router.post('/register', userRegisterCtr)
@@ -25,25 +21,25 @@ router.get('/user-details', authLogin, userDetailsCtr)
 router.get('/logout', userLogoutCtr)
 
 // Project
-router.get('/all-projects', projectGetAll)
-router.post('/projects-by-category', projectByCategory)
-router.post('/project-details', projectDetails)
+router.get('/list-projects', listProjects)
+router.post('/details-project', oneProject)
 
 // News
-router.get('/get-all-news', newsGetAll)
-router.post('/news-details', newsDetails)
+router.get('/get-all-news', listNews)
+router.post('/news-details', oneNews)
 
 // Careers
-router.get('/get-all-careers', careersGetAll)
-router.post('/careers-details', careersDetails)
-
-// Contact
-router.post('/post-contact', contactReceive)
+router.get('/get-all-careers', listCareers)
+router.post('/careers-details', oneCareer)
 
 // Design REQ
 router.post('/design-req', designREQ)
 
 // Home
-router.get('/get-slide', homeGetSlide)
+router.get('/get-slide', listSlide)
+
+// Contact
+router.post('/add-contact', addContact)
+router.post('/send-subscribe', subscribeEmail)
 
 export default router

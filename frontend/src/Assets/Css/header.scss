@@ -87,6 +87,52 @@ header {
             padding: 0 30px;
             gap: 30px
         }
+    
+        &-search {
+            position: relative;
+
+            &-results {
+                position: absolute;
+                width: 200%;
+                padding: 10px 20px;
+                background-color: var(--color-white);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2666666667);
+                top: 134%;
+                right: 0;
+
+                * {
+                    color: var(--color-black);
+                }
+
+                a {
+                    gap: 10px;
+                    padding: 20px 0;
+                    line-height: 1;
+                    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+
+                    img {
+                        display: block;
+                        width: 80px;
+                        aspect-ratio: 1 / 0.83333;
+                    }
+
+                    p {
+                        max-height: 24px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        line-clamp: 1;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                        word-wrap: break-word;
+                    }
+                }
+            }
+        }
     }
 
     &__search-box {

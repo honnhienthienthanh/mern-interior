@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import '../../Assets/Css/admin.css'
-import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import SothicApi from '../../common/SothicApi'
 import AdminAside from '../../components/AdminAside'
 import { notification, NotificationProvider } from '../../store/NotificationContext'
 import Login from '../Login'
-import Dashboard from './Dashboard'
-import HomeSlider from './HomeSlider'
-import AllUsers from './AllUsers'
-import AllDesignREQ from './AllDesignREQ'
-import AllProjects from './AllProjects'
-import AllNews from './AllNews'
-import AllCareers from './AllCareers'
-import AllContact from './AllContact'
 
 const Admin = () => {
     const [isAdmin, setIsAdmin] = useState(false)
@@ -43,9 +35,7 @@ const Admin = () => {
     }, [])
     
     return (
-        !token ? (
-            <Login setToken={setToken} />
-        ) : (
+        token.length > 0 ? (
             <div className='sothic__admin'>
                 <NotificationProvider></NotificationProvider>
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
@@ -54,6 +44,8 @@ const Admin = () => {
                     <Outlet context={token} />
                 </main>
             </div>
+        ) : (
+            <Login setToken={setToken} />
         )
     )
 }

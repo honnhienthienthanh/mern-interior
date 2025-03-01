@@ -38,7 +38,7 @@ const CareersDetails = () => {
             { careersDetails && (
                 <div className='sothic__news-details-container flex flex-col'>
                     <img
-                        src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + careersDetails?.careersImage}
+                        src={careersDetails?.careersImage[0].url}
                         alt={'Sothic Studio - ' + careersDetails?.careersTitle}
                     />
                     <h2>{ careersDetails?.careersTitle }</h2>

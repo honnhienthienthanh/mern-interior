@@ -5,6 +5,8 @@ import moment from 'moment'
 import AdminUploadCareers from '../../components/AdminUploadCareers'
 import AdminEditCareers from '../../components/AdminEditCareers'
 import { useOutletContext } from 'react-router-dom'
+import { notification } from '../../store/NotificationContext'
+import AdminConfirmBox from '../../components/AdminConfirmBox'
 
 const AllCareers = () => {
     const [careersData, setCareersData] = useState([])
@@ -36,6 +38,31 @@ const AllCareers = () => {
     useEffect(() => {
         getAllCareers()
     }, [])
+
+    const [delStatus, setDelStatus] = useState(false)
+    const [careerId, setCareerId] = useState({
+        _id: ''
+    })
+
+    async function deleteCareer() {
+        const delCareer = await fetch(SothicAPI.careers_delete.url, {
+            method: SothicAPI.careers_delete.method,
+            headers: {
+                'Content-Type': 'application/json',
+                token
+            },
+            body: JSON.stringify(careerId)
+        }).then(res => res.json())
+
+        if(delCareer.success) {
+            notification.success(delCareer.message)
+            getAllCareers()
+        }
+
+        if(delCareer.error) {
+            notification.error(delCareer.message)
+        }
+    }
     return (
         <div className='sothic__all-news'>
             <div className='sothic__all-news-header flex items-center justify-between'>
@@ -68,7 +95,7 @@ const AllCareers = () => {
                                     <tr key={careers?.careersTitle + index}>
                                         <td>
                                             <img
-                                                src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + careers?.careersImage}
+                                                src={careers?.careersImage[0].url}
                                                 alt={`Sothic Studio - ${careers?.careersTitle}`}
                                             />
                                         </td>
@@ -94,7 +121,13 @@ const AllCareers = () => {
                                                         edit
                                                     </span>
                                                 </button>
-                                                <button className='flex items-center justify-center'>
+                                                <button
+                                                    className='flex items-center justify-center'
+                                                    onClick={() => {
+                                                        setCareerId({ _id: careers?._id })
+                                                        setDelStatus(true)
+                                                    }}
+                                                >
                                                     <span className="material-symbols-outlined">
                                                         delete
                                                     </span>
@@ -127,6 +160,16 @@ const AllCareers = () => {
                     token={token}
                     prevData={editCareers}
                     onClose={() => setShowEditCareers(false)}
+                    refresh={getAllCareers}
+                />
+            }
+            
+            { delStatus &&
+                <AdminConfirmBox
+                    showStatus={delStatus}
+                    message={'Bạn chắc chắn muốn xóa tin tức này chứ?'}
+                    userAction={deleteCareer}
+                    STClose={() => setDelStatus(false)}
                     refresh={getAllCareers}
                 />
             }

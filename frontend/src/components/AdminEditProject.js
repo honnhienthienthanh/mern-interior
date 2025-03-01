@@ -5,10 +5,12 @@ import SothicAPI from '../common/SothicApi'
 import createUrl from '../helpers/createUrl'
 import { notification } from '../store/NotificationContext'
 import imageTobase64 from '../helpers/imageTobase64'
+import AdminConfirmBox from './AdminConfirmBox'
 
 const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
     const [projectData, setProjectData] = useState({
         ...prevData,
+        _id: prevData?._id,
         projectName: prevData?.projectName,
         category: prevData?.category,
         customer: prevData?.customer,
@@ -16,14 +18,18 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
         numberOfFloors: prevData?.numberOfFloors,
         projectAddress: prevData?.projectAddress,
         projectImages: prevData?.projectImages || [],
-        projectUri: prevData?.projectUri
+        projectUri: prevData?.projectUri,
+        publicId: [],
+        newImages: []
     })
     
-    const [projectImages, setProjectImages] = useState([])
     const [images, setImages] = useState([])
 
     const [showImage, setShowImage] = useState(false)
     const [fullScreen, setFullScreen] = useState('')
+
+    const [delStatus, setDelStatus] = useState(false)
+    const [delIndex, setDelIndex] = useState(0)
 
     const handleOnChange = (e) => {
         const { name, value } = e.target
@@ -46,7 +52,12 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
     }
 
     function handleUploadImage(e) {
-        setProjectImages([...e.target.files])
+        setProjectData(prev => {
+            return {
+                ...prev,
+                newImages: [...projectData.newImages, ...e.target.files]
+            }
+        })
         const allImage = [...e.target.files]
 
         allImage.forEach(async(image) => {
@@ -56,15 +67,40 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
     }
 
     const handleDeleteImage = async(index) => {
-        const newProjectImage = [...projectImages]
+        const newProjectImage = [...projectData.newImages]
         newProjectImage.splice(index, 1)
 
-        setProjectImages([...newProjectImage])
+        setProjectData(prev => {
+            return {
+                ...prev,
+                newImages: newProjectImage
+            }
+        })
 
-        const newImages = [...images]
-        newImages.splice(index, 1)
+        const newImage = [...images]
+        newImage.splice(index, 1)
 
-        setImages([...newImages])
+        setImages([...newImage])
+    }
+
+    const handleDeleteOldImage = async(index) => {
+        const newImage = [...projectData.publicId]
+        newImage.push(projectData.projectImages[index].public_id)
+        setProjectData(prev => {
+            return {
+                ...prev,
+                publicId: newImage
+            }
+        })
+        const newProjectImage = [...projectData.projectImages]
+        newProjectImage.splice(index, 1)
+
+        setProjectData(prev => {
+            return {
+                ...prev,
+                projectImages: [...newProjectImage]
+            }
+        })
     }
 
     const handleSubmit = async(e) => {
@@ -72,9 +108,10 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
 
         let fetchProject
 
-        if(projectImages) {
+        if(projectData.newImages) {
             const data = new FormData()
     
+            data.append('_id', projectData?._id)
             data.append('projectName', projectData?.projectName)
             data.append('category', projectData?.category)
             data.append('customer', projectData?.customer)
@@ -82,14 +119,19 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
             data.append('numberOfFloors', projectData?.numberOfFloors)
             data.append('projectAddress', projectData?.projectAddress)
             data.append('projectUri', projectData?.projectUri)
-            data.append('projectImages', projectData?.projectImages)
-    
-            projectImages.forEach(image => {
-                data.append('projImages', image)
+            data.append('projectImages', JSON.stringify(projectData.projectImages))
+
+            projectData.publicId.forEach(pub => {
+                data.append('publicId', pub)
             })
 
-            fetchProject = await fetch(SothicAPI.project_upload.url, {
-                method: SothicAPI.project_upload.method,
+            projectData.newImages.forEach(image => {
+                data.append('newImages', image)
+            })
+
+            console.log(data)
+            fetchProject = await fetch(SothicAPI.project_update.url, {
+                method: SothicAPI.project_update.method,
                 headers: { token },
                 body: data
             }).then(res => res.json())
@@ -106,7 +148,6 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
 
         if(fetchProject.success) {
             notification.success('Sửa dự án thành công!')
-            setProjectImages([])
             setImages([])
             refresh()
             onClose()
@@ -225,12 +266,12 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
                         />
                     </label>
                     <div className='sothic__list-image flex items-center'>
-                        { projectImages[0] ? (
-                            projectImages.map((image, index) => {
+                        { images[0] ? (
+                            images.map((image, index) => {
                                 return (
                                     <div className='sothic__list-image-item' key={index + 5}>
                                         <img
-                                            src={image.url}
+                                            src={image}
                                             width={80}
                                             height={80}
                                             alt=''
@@ -265,13 +306,16 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
                                             height={80}
                                             alt=''
                                             onClick={() => {
-                                                setFullScreen(image.url)
+                                                setFullScreen(image?.url)
                                                 setShowImage(true)
                                             }}
                                         />
                                         <span
                                             className="material-symbols-outlined"
-                                            onClick={() => handleDeleteImage(index)}
+                                            onClick={() => {
+                                                setDelIndex(index)
+                                                setDelStatus(true)
+                                            }}
                                         >
                                             delete
                                         </span>
@@ -286,6 +330,15 @@ const AdminEditProject = ({ token, prevData, onClose, refresh }) => {
             </div>
             { showImage &&
                 <DisplayImage onClose={() => setShowImage(false)} imgUrl={fullScreen} />
+            }
+            { delStatus &&
+                <AdminConfirmBox
+                    showStatus={delStatus}
+                    message={'Bạn chắc chắn muốn xóa ảnh này chứ?'}
+                    userAction={() => handleDeleteOldImage(delIndex)}
+                    STClose={() => setDelStatus(false)}
+                    refresh={() => {}}
+                />
             }
         </div>
     )

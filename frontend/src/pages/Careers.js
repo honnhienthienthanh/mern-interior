@@ -43,7 +43,7 @@ const Careers = () => {
                                 key={careers.careersTitle + index}
                             >
                                 <img
-                                    src={process.env.REACT_APP_BACKEND_URI + '/uploads/' + careers.careersImage}
+                                    src={careers.careersImage[0].url}
                                     alt={`Sothic Studio - ${ careers.careersTitle }`}
                                 />
                                 <h3 className='uppercase'>{ careers.careersTitle }</h3>

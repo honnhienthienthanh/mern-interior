@@ -25,7 +25,7 @@
 .sothic__upload-form form {
   padding-right: 10px;
   gap: 15px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .sothic__upload-form form::-webkit-scrollbar {
   visibility: hidden;

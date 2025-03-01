@@ -19,7 +19,6 @@ import AllProjects from '../pages/Admin/AllProjects'
 import AllNews from '../pages/Admin/AllNews'
 import AllCareers from '../pages/Admin/AllCareers'
 import CareersDetails from '../pages/CareersDetails'
-import AllContact from '../pages/Admin/AllContact'
 import AllDesignREQ from '../pages/Admin/AllDesignREQ'
 
 const router = createBrowserRouter([
@@ -105,10 +104,6 @@ const router = createBrowserRouter([
             {
                 path: 'all-careers',
                 element: <AllCareers />
-            },
-            {
-                path: 'all-contact',
-                element: <AllContact />
             }
         ]
     },

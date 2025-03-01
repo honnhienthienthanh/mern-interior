@@ -34,15 +34,15 @@ const SothicAPI = {
         method: 'POST'
     },
     all_project: {
-        url: `${API}/all-projects`,
+        url: `${API}/list-projects`,
         method: 'GET'
     },
     project_update: {
-        url: `${API}/project-update`,
+        url: `${API}/update-project`,
         method: 'POST'
     },
     project_delete: {
-        url: `${API}/delete-project`,
+        url: `${API}/remove-project`,
         method: 'POST'
     },
     project_by_category: {
@@ -50,7 +50,7 @@ const SothicAPI = {
         method: 'POST'
     },
     project_details: {
-        url: `${API}/project-details`,
+        url: `${API}/details-project`,
         method: 'POST'
     },
     news_upload: {
@@ -89,6 +89,10 @@ const SothicAPI = {
         url: `${API}/careers-details`,
         method: 'POST'
     },
+    careers_delete: {
+        url: `${API}/delete-career`,
+        method: 'POST'
+    },
     contact_post: {
         url: `${API}/post-contact`,
         method: 'POST'
@@ -112,6 +116,22 @@ const SothicAPI = {
     home_get_slide: {
         url: `${API}/get-slide`,
         method: 'GET'
+    },
+    home_update: {
+        url: `${API}/slide-update`,
+        method: 'POST'
+    },
+    home_delete: {
+        url: `${API}/slide-delete`,
+        method: 'POST'
+    },
+    contact_add: {
+        url: `${API}/add-contact`,
+        method: 'POST'
+    },
+    subscribe_email: {
+        url: `${API}/send-subscribe`,
+        method: 'POST'
     }
 }
 

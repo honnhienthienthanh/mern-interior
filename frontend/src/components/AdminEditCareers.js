@@ -10,7 +10,8 @@ const AdminEditCareers = ({ token, prevData, onClose, refresh }) => {
         careersTitle: prevData?.careersTitle,
         careersSumary: prevData?.careersSumary,
         careersImage: prevData?.careersImage || [],
-        careersContent: prevData?.careersContent
+        careersContent: prevData?.careersContent,
+        replaceImage: []
     })
 
     const inputCareersData = (e) => {
@@ -31,11 +32,12 @@ const AdminEditCareers = ({ token, prevData, onClose, refresh }) => {
         careers.set('careersTitle', careersData.careersTitle)
         careers.set('careersSumary', careersData.careersSumary)
         careers.set('careersContent', careersData.careersContent)
+        careers.set('careersImage', JSON.stringify(careersData.careersImage))
 
         if(typeof careersData.careersImage === 'object') {
-            careers.set('careersImage', careersData.careersImage[0])
+            careers.set('replaceImage', careersData.replaceImage[0])
         } else {
-            careers.set('careersImage', careersData.careersImage)
+            careers.set('replaceImage', careersData.replaceImage)
         }
         
         careers.set('careersLink', createUrl(careersData.careersTitle))
@@ -47,13 +49,13 @@ const AdminEditCareers = ({ token, prevData, onClose, refresh }) => {
         }).then(res => res.json())
 
         if(postCareers.success) {
-            notification.success('Sửa tin tức thành công!')
+            notification.success(postCareers.message)
             refresh()
             onClose()
         }
 
         if(postCareers.error) {
-            notification.error('Sửa tin tức không thành công. Vui lòng kiểm tra lại!')
+            notification.error(postCareers.message)
             onClose()
         }
     }
@@ -100,7 +102,7 @@ const AdminEditCareers = ({ token, prevData, onClose, refresh }) => {
                         onChange={e => setCareersData(prev => {
                             return {
                                 ...prev,
-                                careersImage: e.target.files
+                                replaceImage: e.target.files
                             }
                         })}
                         className='bottom-10'

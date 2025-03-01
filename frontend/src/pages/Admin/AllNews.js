@@ -56,6 +56,7 @@ const AllNews = () => {
 
         if(delNews.success) {
             notification.success(delNews.message)
+            getAllNews()
         }
 
         if(delNews.error) {

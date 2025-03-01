@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const sliderSchema = new mongoose.Schema({
     slideImage: {
-        type: String,
+        type: Array,
         required: true
     },
     slideAuthor: {

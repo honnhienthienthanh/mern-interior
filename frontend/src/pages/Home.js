@@ -92,7 +92,7 @@ const Home = () => {
                     { slideData.map((slide, index) => {
                         return (
                             <div className='item' key={slide?.slideTitle + index}>
-                                <img src={process.env.REACT_APP_BACKEND_URI + '/' + slide?.slideImage} alt='' />
+                                <img src={slide?.slideImage[0].url} alt='' />
                                 <div className='content'>
                                     <p className='author'>{slide?.slideAuthor}</p>
                                     <p className='title'>{slide?.slideTitle}</p>

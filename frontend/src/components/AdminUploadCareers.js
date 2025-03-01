@@ -36,15 +36,15 @@ const AdminUploadCareers = ({ token, onClose }) => {
             method: SothicAPI.careers_upload.method,
             headers: { token },
             body: careers
-        })
+        }).then(res => res.json())
 
-        if(postCareers.ok) {
-            notification.success('Thêm tin tức mới thành công!')
+        if(postCareers.success) {
+            notification.success(postCareers.message)
             onClose()
         }
 
-        if(!postCareers.ok) {
-            notification.error('Đã có lỗi. Vui lòng kiểm tra lại!')
+        if(postCareers.error) {
+            notification.error(postCareers.message)
         }
     }
 

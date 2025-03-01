@@ -123,6 +123,8 @@ const HomeAdvisory = ({ showStatus, onClose}) => {
                 >
                     <option value={''}>Tư vấn thiết kế</option>
                     <option value={'Biệt thự hiện đại'}>Biệt thự hiện đại</option>
+                    <option value={'Nhà phố hiện đại'}>Nhà phố hiện đại</option>
+                    <option value={'Penthouse & Duplex'}>Penthouse & Duplex</option>
                 </select>
                 <textarea
                     name='customerRequest'

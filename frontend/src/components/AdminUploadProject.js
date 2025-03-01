@@ -45,7 +45,7 @@ const UploadProject = ({ token, onClose, refresh }) => {
     }
 
     function handleUploadImage(e) {
-        setProjectImages([...e.target.files])
+        setProjectImages(prev => [...prev, ...e.target.files])
         const allImage = [...e.target.files]
 
         allImage.forEach(async(image) => {

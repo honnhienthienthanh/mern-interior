@@ -1,11 +1,7 @@
 import mongoose from 'mongoose'
 
 const contactSchema = new mongoose.Schema({
-    contact1stName: {
-        type: String,
-        required: true
-    },
-    contactLastName: {
+    contactfullName: {
         type: String,
         required: true
     },
