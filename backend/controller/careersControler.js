@@ -48,7 +48,7 @@ async function addCareer(req, res) {
 }
 
 // Listing
-async function listCareers(req, res) {
+async function listCareersV1(req, res) {
     try {
         const allCareers = await careersModel.find()
             .populate('author', 'name')
@@ -58,6 +58,40 @@ async function listCareers(req, res) {
             res.status(200).json({
                 data: allCareers,
                 message: 'Get news data successfully!',
+                success: true,
+                error: false
+            })
+        } else {
+            throw new Error('Data is empty or something went wrong!')
+        }
+    } catch(err) {
+        res.status(400).json({
+            message: err.message || err,
+            success: false,
+            error: true
+        })
+    }
+}
+
+async function listCareersV2(req, res) {
+    try {
+        const { page = 1 } = req.body
+        const limit = 1
+        const skip = (page - 1) * limit
+
+        const allCareers = await careersModel.find()
+            .populate('author', 'name')
+            .sort({createdAt: -1})
+            .skip(skip)
+            .limit(limit)
+        const total = await careersModel.countDocuments()
+
+        if(allCareers) {
+            res.status(200).json({
+                data: allCareers,
+                page: page,
+                pages: Math.ceil(total / limit),
+                message: 'Danh sách tin tức tuyển dụng!',
                 success: true,
                 error: false
             })
@@ -194,4 +228,4 @@ async function deleteCareer(req, res) {
     }
 }
 
-export {addCareer, listCareers, oneCareer, updateCareer, deleteCareer}
+export {addCareer, listCareersV1, listCareersV2, oneCareer, updateCareer, deleteCareer}

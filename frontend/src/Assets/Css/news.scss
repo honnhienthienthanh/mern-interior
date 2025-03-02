@@ -1,5 +1,7 @@
 .sothic__news {
     width: 100%;
+    background-color: var(--color-white);
+    padding-bottom: 80px;
 
     &-breadcrumb {
         position: relative;
@@ -39,8 +41,7 @@
 
     &-content {
         width: 100%;
-        padding: 80px 0;
-        background-color: var(--color-white);
+        padding: 80px 0 0;
 
         &-item {
             &:hover {

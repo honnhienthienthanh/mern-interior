@@ -11,4 +11,45 @@
   .sothic__project .flex {
     justify-content: center;
   }
+}
+
+.pagination {
+  margin-top: 45px;
+  gap: 20px;
+}
+.pagination * {
+  font-size: 16px;
+  line-height: 1;
+}
+.pagination button {
+  color: var(--color-black);
+  padding: 8px 10px;
+  background-color: var(--color-white);
+  border: solid 1px var(--color-white);
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.pagination button:hover {
+  color: var(--color-white);
+  background-color: transparent;
+}
+.pagination button.page-active {
+  color: var(--color-white);
+  background-color: transparent;
+}
+.pagination.white * {
+  color: var(--color-black);
+}
+.pagination.white button {
+  color: var(--color-white);
+  background-color: var(--color-black);
+  border: solid 1px var(--color-black);
+}
+.pagination.white button:hover {
+  color: var(--color-black);
+  background-color: transparent;
+}
+.pagination.white button.page-active {
+  color: var(--color-black);
+  background-color: transparent;
 }/*# sourceMappingURL=projects.css.map */

@@ -35,7 +35,7 @@ const SothicAPI = {
     },
     all_project: {
         url: `${API}/list-projects`,
-        method: 'GET'
+        method: 'POST'
     },
     project_update: {
         url: `${API}/update-project`,
@@ -43,10 +43,6 @@ const SothicAPI = {
     },
     project_delete: {
         url: `${API}/remove-project`,
-        method: 'POST'
-    },
-    project_by_category: {
-        url: `${API}/projects-by-category`,
         method: 'POST'
     },
     project_details: {
@@ -59,7 +55,7 @@ const SothicAPI = {
     },
     news_get_all: {
         url: `${API}/get-all-news`,
-        method: 'GET'
+        method: 'POST'
     },
     news_details: {
         url: `${API}/news-details`,

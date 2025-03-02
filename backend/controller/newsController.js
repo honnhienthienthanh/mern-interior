@@ -48,7 +48,7 @@ async function addNews(req, res) {
 }
 
 // Listing
-async function listNews(req, res) {
+async function listNewsV1(req, res) {
     try {
         const allNews = await newsModel.find()
             .populate('author', 'name')
@@ -64,6 +64,45 @@ async function listNews(req, res) {
         } else {
             res.status(400).json({
                 message: 'Data is empty or something went wrong!',
+                success: false,
+                error: true
+            })
+        }
+    } catch(err) {
+        res.status(400).json({
+            message: err.message || err,
+            success: false,
+            error: true
+        })
+    }
+}
+
+
+async function listNewsV2(req, res) {
+    try {
+        const { page = 1 } = req.body
+        const limit = 12
+        const skip = (page - 1) * limit
+
+        const allNews = await newsModel.find()
+            .populate('author', 'name')
+            .sort({createdAt: -1})
+            .skip(skip)
+            .limit(limit)
+        const total = await newsModel.countDocuments()
+
+        if(allNews) {
+            res.status(200).json({
+                data: allNews,
+                page: page,
+                pages: Math.ceil(total / limit),
+                message: 'Danh sách tin tức!',
+                success: true,
+                error: false
+            })
+        } else {
+            res.status(400).json({
+                message: 'Dữ liệu trống hoặc đã có lỗi!',
                 success: false,
                 error: true
             })
@@ -197,4 +236,4 @@ async function deleteNews(req, res) {
     }
 }
 
-export { addNews, listNews, oneNews, updateNews, deleteNews }
+export { addNews, listNewsV1, listNewsV2, oneNews, updateNews, deleteNews }

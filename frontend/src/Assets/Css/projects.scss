@@ -11,3 +11,53 @@
         }
     }
 }
+
+.pagination {
+    margin-top: 45px;
+    gap: 20px;
+
+    * {
+        font-size: 16px;
+        line-height: 1;
+    }
+
+    button {
+        color: var(--color-black);
+        padding: 8px 10px;
+        background-color: var(--color-white);
+        border: solid 1px var(--color-white);
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            color: var(--color-white);
+            background-color: transparent;
+        }
+
+        &.page-active {
+            color: var(--color-white);
+            background-color: transparent;
+        }
+    }
+
+    &.white {
+        * {
+            color: var(--color-black);
+        }
+        button {
+            color: var(--color-white);
+            background-color: var(--color-black);
+            border: solid 1px var(--color-black);
+
+            &:hover {
+                color: var(--color-black);
+                background-color: transparent;
+            }
+
+            &.page-active {
+                color: var(--color-black);
+                background-color: transparent;
+            }
+        }
+    }
+}

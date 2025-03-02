@@ -44,12 +44,38 @@ async function addProject(req, res) {
 }
 
 // Listing
-async function listProjects(req, res) {
+async function listProjectsV1(req, res) {
     try {
         const list = await projectModel.find().sort({ createdAt: -1 })
 
         res.status(200).json({
             data: list,
+            message: 'Danh sách các dự án!',
+            success: true,
+            eror: false
+        })
+    } catch(err) {
+        res.status(400).json({
+            message: err.message || err,
+            success: false,
+            error: true
+        })
+    }
+}
+
+async function listProjectsV2(req, res) {
+    try {
+        const { page = 1 } = req.body
+        const limit = 1
+        const skip = (page - 1) * limit
+
+        const list = await projectModel.find().sort({ createdAt: -1 }).skip(skip).limit(limit)
+        const total = await projectModel.countDocuments()
+
+        res.status(200).json({
+            data: list,
+            page: page,
+            pages: Math.ceil(total / limit),
             message: 'Danh sách các dự án!',
             success: true,
             eror: false
@@ -182,4 +208,4 @@ async function removeProject(req, res) {
     }
 }
 
-export { addProject, listProjects, oneProject, updateProject, removeProject }
+export { addProject, listProjectsV1, listProjectsV2, oneProject, updateProject, removeProject }
