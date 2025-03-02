@@ -66,7 +66,7 @@ async function listProjectsV1(req, res) {
 async function listProjectsV2(req, res) {
     try {
         const { page = 1 } = req.body
-        const limit = 1
+        const limit = 12
         const skip = (page - 1) * limit
 
         const list = await projectModel.find().sort({ createdAt: -1 }).skip(skip).limit(limit)

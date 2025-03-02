@@ -92,6 +92,15 @@
                     transition: all 0.5s ease-in-out;
                 }
             }
+
+            &#facebook {
+                background-image: url(../../Assets/Icons/icon-facebook.png);
+
+                &:hover {
+                    background-image: url(../../Assets/Icons/icon-facebook-hover.png);
+                    transition: all 0.5s ease-in-out;
+                }
+            }
         }
     }
 

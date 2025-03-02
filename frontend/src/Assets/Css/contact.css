@@ -78,6 +78,13 @@
   background-image: url(../../Assets/Icons/icon-instagram-hover.png);
   transition: all 0.5s ease-in-out;
 }
+.sothic__contact-social a#facebook {
+  background-image: url(../../Assets/Icons/icon-facebook.png);
+}
+.sothic__contact-social a#facebook:hover {
+  background-image: url(../../Assets/Icons/icon-facebook-hover.png);
+  transition: all 0.5s ease-in-out;
+}
 .sothic__contact-form {
   width: calc(58.25% - 25px);
   flex-wrap: wrap;

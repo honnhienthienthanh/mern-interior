@@ -76,7 +76,7 @@ async function listCareersV1(req, res) {
 async function listCareersV2(req, res) {
     try {
         const { page = 1 } = req.body
-        const limit = 1
+        const limit = 12
         const skip = (page - 1) * limit
 
         const allCareers = await careersModel.find()

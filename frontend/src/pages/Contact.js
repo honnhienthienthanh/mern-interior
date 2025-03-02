@@ -104,8 +104,15 @@ const Contact = () => {
                         </li>
                     </ul>
                     <div className='sothic__contact-social flex'>
-                        <Link id='twetter' to={''} title=''>&nbsp;</Link>
-                        <Link id='instagram' to={''} title=''>&nbsp;</Link>
+                        {/* <Link id='twetter' to={''} title=''>&nbsp;</Link>
+                        <Link id='instagram' to={''} title=''>&nbsp;</Link> */}
+                        <Link
+                            id='facebook'
+                            to={'https://www.facebook.com/Sothicstudiojsc'}
+                            title='Sothic Studio Facebook'
+                        >
+                            &nbsp;
+                        </Link>
                     </div>
                 </div>
                 <form className='sothic__contact-form flex' onSubmit={handleContactSubmit}>

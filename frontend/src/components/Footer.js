@@ -31,8 +31,13 @@ const Footer = () => {
                 © 2025 Sothic Studio. All Rights Reserved. Privacy Policy
             </div>
             <div className='sothic__footer-social md:hidden flex items-center justify-center'>
-                <Link id='footerTwetter' to={''} title='Sothic Studio Twetter'>&nbsp;</Link>
-                <Link id='footerInstagram' to={''} title='Sothic Studio Instagram'>&nbsp;</Link>
+                {/* <Link id='footerTwetter' to={''} title='Sothic Studio Twetter'>&nbsp;</Link>
+                <Link id='footerInstagram' to={''} title='Sothic Studio Instagram'>&nbsp;</Link> */}
+                <Link
+                    id='footer-facebook'
+                    to={'https://www.facebook.com/Sothicstudiojsc'}
+                    title='Sothic Studio Facebook'
+                >&nbsp;</Link>
             </div>
             <div className='sothic__footer-subscribe md:hidden'>
                 <form className='flex items-center' onSubmit={handleSubscribe}>

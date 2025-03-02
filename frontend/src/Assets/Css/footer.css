@@ -60,4 +60,12 @@
 }
 .sothic__footer-social a#footerInstagram:hover {
   background-image: url(../../Assets/Icons/icon-instagram-hover.png);
+}
+.sothic__footer-social a#footer-facebook {
+  background: url(../../Assets/Icons/icon-facebook.png) no-repeat center center;
+  background-size: cover;
+  transition: all 0.3s ease-in-out;
+}
+.sothic__footer-social a#footer-facebook:hover {
+  background-image: url(../../Assets/Icons/icon-facebook-hover.png);
 }/*# sourceMappingURL=footer.css.map */
